@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebola Outbreak Monitor 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F5F4F0;color:#1A1A1A;font-size:14px;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.ticker{background:#7B1A1A;color:#fff;display:flex;align-items:center;height:38px;overflow:hidden}
+.t-live{background:#C0392B;height:100%;padding:0 14px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:.8px;flex-shrink:0}
+.t-dot{width:6px;height:6px;background:#fff;border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.t-wrap{flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent);mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent)}
+.t-track{display:flex;white-space:nowrap;animation:scroll 65s linear infinite;font-size:12px;opacity:.9}
+.t-track:hover{animation-play-state:paused}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.t-item{padding:0 20px;border-right:1px solid rgba(255,255,255,.15);display:flex;align-items:center;gap:6px}
+.td{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.hdr{background:#fff;border-bottom:1px solid #E0DDD6;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.hdr-l{display:flex;align-items:center;gap:12px}
+.hdr-ico{width:40px;height:40px;background:#FFF0EE;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid #FAD8CC;flex-shrink:0}
+.hdr-title{font-size:16px;font-weight:600;letter-spacing:-.3px}
+.hdr-sub{font-size:12px;color:#6B6A64;margin-top:2px}
+.hdr-r{display:flex;gap:7px;flex-wrap:wrap}
+.bdg{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;white-space:nowrap}
+.bdg-r{background:#FFF0EE;color:#7B1A1A;border:1px solid #FAD8CC}
+.bdg-a{background:#FFFAEB;color:#7A4A08;border:1px solid #FAC775}
+.blink{width:6px;height:6px;background:#C0392B;border-radius:50%;animation:blink 1.4s infinite;display:inline-block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-bottom:1px solid #E0DDD6}
+@media(max-width:600px){.stats{grid-template-columns:1fr 1fr}}
+.stat{padding:11px 16px;border-right:1px solid #E0DDD6}
+.stat:last-child{border-right:none}
+.stat:hover{background:#F9F8F4}
+.s-lbl{font-size:10px;color:#8A8880;margin-bottom:3px;font-weight:500;text-transform:uppercase;letter-spacing:.3px}
+.s-num{font-size:22px;font-weight:700;line-height:1;letter-spacing:-.5px}
+.s-sub{font-size:11px;color:#8A8880;margin-top:3px}
+.nr{color:#A32D2D}.na{color:#854F0B}.nb{color:#0C447C}.ng{color:#27500A}
+.tabs{background:#fff;border-bottom:1px solid #E0DDD6;display:flex;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:11px 18px;font-size:13px;font-weight:500;color:#6B6A64;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;user-select:none;transition:color .15s}
+.tab:hover{color:#1A1A1A}
+.tab.active{color:#A32D2D;border-bottom-color:#C0392B}
+.tab-dot{display:inline-block;width:7px;height:7px;background:#BA7517;border-radius:50%;animation:blink 2s infinite;margin-left:4px;vertical-align:middle}
+.pane{display:none}
+.pane.active{display:block}
+.two-col{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+.col{padding:16px 18px;border-right:1px solid #E0DDD6}
+.col:last-child{border-right:none}
+.col-hdr{display:flex;align-items:center;gap:8px;margin-bottom:13px;padding-bottom:10px;border-bottom:1px solid #E0DDD6}
+.cflag{font-size:19px}
+.cname{font-size:14px;font-weight:600}
+.cpill{margin-left:auto;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.cp-r{background:#FFF0EE;color:#7B1A1A;border:1px solid #FAD8CC}
+.cp-a{background:#FFFAEB;color:#7A4A08;border:1px solid #FAC775}
+.upd{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #EDECE6}
+.upd:last-child{border-bottom:none}
+.upd-d{font-size:10px;font-weight:600;color:#8A8880;min-width:38px;padding-top:2px;text-transform:uppercase;letter-spacing:.3px}
+.upd-b{font-size:13px;flex:1;line-height:1.55}
+.upd-b strong{font-weight:600}
+.tg{display:inline-block;font-size:10px;font-weight:600;padding:1px 6px;border-radius:4px;margin-right:3px;vertical-align:middle}
+.tg-r{background:#FFF0EE;color:#7B1A1A}
+.tg-a{background:#FFFAEB;color:#7A4A08}
+.tg-b{background:#EDF5FF;color:#0C447C}
+.sp{padding:18px 20px;max-width:900px}
+.alert-box{background:#FFFAEB;border:1px solid #FAC775;border-radius:10px;padding:13px 15px;margin-bottom:15px;display:flex;gap:11px}
+.ab-ico{font-size:18px;flex-shrink:0;margin-top:1px}
+.ab-hd{font-size:14px;font-weight:600;color:#7A4A08;margin-bottom:4px}
+.ab-bd{font-size:13px;color:#5A5955;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.chip{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:5px 11px;border-radius:99px;border:1px solid #E0DDD6;background:#fff}
+.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sec-t{font-size:11px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.6px;margin:14px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t::after{content:'';flex:1;height:1px;background:#E0DDD6}
+.actors-wrap{padding:14px 18px}
+.a-sec-lbl{font-size:11px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.7px;margin:14px 0 10px;display:flex;align-items:center;gap:8px}
+.a-sec-lbl:first-child{margin-top:0}
+.a-sec-lbl::after{content:'';flex:1;height:1px;background:#E0DDD6}
+.concern{background:#FFF0EE;border:1px solid #FAD8CC;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#7B1A1A;line-height:1.6}
+.concern strong{font-weight:600}
+.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:10px}
+.acard{background:#fff;border:1px solid #E0DDD6;border-radius:12px;padding:13px}
+.acard:hover{border-color:#C8C6BE}
+.atop{display:flex;align-items:center;gap:9px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6}
+.aemoji{font-size:22px}
+.aname{font-size:13px;font-weight:600}
+.atype{font-size:11px;color:#8A8880;margin-top:1px}
+.asto{margin-left:auto;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.as-g{background:#EAF3DE;color:#27500A;border:1px solid #C0DD97}
+.as-a{background:#FFFAEB;color:#7A4A08;border:1px solid #FAC775}
+.as-r{background:#FFF0EE;color:#7B1A1A;border:1px solid #FAD8CC}
+.as-b{background:#EDF5FF;color:#0C447C;border:1px solid #85B7EB}
+.alist{list-style:none}
+.alist li{font-size:12px;color:#5A5955;padding:2px 0 2px 13px;position:relative;line-height:1.5}
+.alist li::before{content:'';position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE}
+.alist li strong{font-weight:600;color:#1A1A1A}
+.alist li .hl{color:#A32D2D;font-weight:600}
+.alist li .hla{color:#7A4A08;font-weight:600}
+.alist li .hlb{color:#0C447C;font-weight:600}
+.fund-wrap{overflow-x:auto;margin-top:12px}
+.ftable{width:100%;border-collapse:collapse;font-size:12px}
+.ftable th{text-align:left;padding:7px 10px;font-weight:600;font-size:10px;color:#8A8880;border-bottom:1px solid #E0DDD6;background:#F5F4F0;text-transform:uppercase;letter-spacing:.3px}
+.ftable td{padding:8px 10px;border-bottom:1px solid #EDECE6;vertical-align:top;line-height:1.5}
+.ftable tr:last-child td{border-bottom:none}
+.ftable tr:hover td{background:#F9F8F4}
+.fa-r{color:#A32D2D;font-weight:600}.fa-a{color:#854F0B;font-weight:600}.fa-b{color:#0C447C;font-weight:600}.fa-g{color:#27500A;font-weight:600}
+.map-wrap{padding:14px 18px}
+.map-card{background:#EDECE6;border:1px solid #E0DDD6;border-radius:14px;overflow:hidden;margin-bottom:10px}
+.map-leg{display:flex;flex-wrap:wrap;gap:10px;padding:10px 14px;border-top:1px solid #E0DDD6;background:#fff}
+.leg{display:flex;align-items:center;gap:5px;font-size:12px;color:#5A5955}
+.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.map-note{font-size:12px;color:#5A5955;line-height:1.7;margin-top:4px;padding:0 2px}
+.tl-wrap{padding:16px 20px;max-width:700px}
+.tl-item{display:flex;gap:14px;padding-bottom:22px;position:relative}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:17px;top:38px;bottom:0;width:1px;background:#E0DDD6}
+.tl-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;border:1px solid #E0DDD6}
+.tl-r{background:#FFF0EE}.tl-a{background:#FFFAEB}.tl-b{background:#EDF5FF}
+.tl-date{font-size:10px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.tl-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.tl-body{font-size:13px;color:#5A5955;line-height:1.6}
+.ftr{background:#fff;border-top:1px solid #E0DDD6;padding:8px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.srcs{display:flex;flex-wrap:wrap;gap:5px}
+.src{font-size:10px;color:#8A8880;background:#F5F4F0;border:1px solid #E0DDD6;border-radius:4px;padding:2px 6px}
+.ftr-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:6px 14px;background:#fff;border:1px solid #C8C6BE;border-radius:8px;cursor:pointer;color:#1A1A1A;text-decoration:none}
+.ftr-btn:hover{background:#F5F4F0}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#C8C6BE;border-radius:99px}
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="t-live"><span class="t-dot"></span>LIVE</div>
+  <div class="t-wrap"><div class="t-track">
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>May 22 &mdash; Ebola confirmed in Butembo &amp; Goma (Nord-Kivu) &middot; now reaching major urban centres</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>Ugandans returned from DRC burial develop symptoms &mdash; taken to Fort Portal for treatment</span>
+    <span class="t-item"><span class="td" style="background:#FFD080"></span>Canada: person returning from East Africa tested for Ebola in Ontario (precautionary)</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>WHO: "patient zero" still unconfirmed &mdash; body of Bunia victim transported to Mongbwalu in coffin sparked spread</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>600+ suspected &middot; 51 confirmed &middot; 139 deaths &mdash; 3rd largest Ebola outbreak ever recorded</span>
+    <span class="t-item"><span class="td" style="background:#FFD080"></span>WHO Dr Ancia: "It is not two months before the outbreak will be done &mdash; remember the previous one took two years"</span>
+    <span class="t-item"><span class="td" style="background:#80C0FF"></span>MSF training Kyeshero Hospital staff in Goma on Ebola environment protocols</span>
+    <span class="t-item"><span class="td" style="background:#80C0FF"></span>South Africa $2.5M pledged &middot; US $13M mobilised &middot; WHO $3.9M approved</span>
+    <span class="t-item"><span class="td" style="background:#FFD080"></span>South Sudan: PHEOC on alert &middot; no confirmed cases &middot; borders Ituri directly</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>NO vaccine or treatment for Bundibugyo &mdash; standard field tests often miss it</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>May 22 &mdash; Ebola confirmed in Butembo &amp; Goma (Nord-Kivu) &middot; now reaching major urban centres</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>Ugandans returned from DRC burial develop symptoms &mdash; taken to Fort Portal for treatment</span>
+    <span class="t-item"><span class="td" style="background:#FFD080"></span>Canada: person returning from East Africa tested for Ebola in Ontario (precautionary)</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>WHO: "patient zero" still unconfirmed &mdash; body of Bunia victim transported to Mongbwalu in coffin sparked spread</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>600+ suspected &middot; 51 confirmed &middot; 139 deaths &mdash; 3rd largest Ebola outbreak ever recorded</span>
+    <span class="t-item"><span class="td" style="background:#FFD080"></span>WHO Dr Ancia: "It is not two months before the outbreak will be done &mdash; remember the previous one took two years"</span>
+    <span class="t-item"><span class="td" style="background:#80C0FF"></span>MSF training Kyeshero Hospital staff in Goma on Ebola environment protocols</span>
+    <span class="t-item"><span class="td" style="background:#80C0FF"></span>South Africa $2.5M pledged &middot; US $13M mobilised &middot; WHO $3.9M approved</span>
+    <span class="t-item"><span class="td" style="background:#FFD080"></span>South Sudan: PHEOC on alert &middot; no confirmed cases &middot; borders Ituri directly</span>
+    <span class="t-item"><span class="td" style="background:#FF9080"></span>NO vaccine or treatment for Bundibugyo &mdash; standard field tests often miss it</span>
+  </div></div>
+</div>
+
+<div class="hdr">
+  <div class="hdr-l">
+    <div class="hdr-ico">&#x1F9A0;</div>
+    <div>
+      <div class="hdr-title">Ebola Outbreak Monitor 2026</div>
+      <div class="hdr-sub">Bundibugyo virus &middot; DRC &middot; Uganda &middot; South Sudan &middot; Updated May 22, 2026</div>
+    </div>
+  </div>
+  <div class="hdr-r">
+    <span class="bdg bdg-r"><span class="blink"></span>WHO PHEIC</span>
+    <span class="bdg bdg-r">Africa CDC PHECS</span>
+    <span class="bdg bdg-a">3rd largest outbreak ever</span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="s-lbl">Suspected cases (DRC+Uganda)</div>
+    <div class="s-num nr">600+</div>
+    <div class="s-sub">51 confirmed &middot; Ituri + Nord-Kivu</div>
+  </div>
+  <div class="stat">
+    <div class="s-lbl">Deaths</div>
+    <div class="s-num nr">139+</div>
+    <div class="s-sub">~25% CFR &middot; outbreak to grow &mdash; WHO</div>
+  </div>
+  <div class="stat">
+    <div class="s-lbl">Uganda</div>
+    <div class="s-num na">2+</div>
+    <div class="s-sub">Fort Portal cases under treatment</div>
+  </div>
+  <div class="stat">
+    <div class="s-lbl">South Sudan</div>
+    <div class="s-num nb" style="font-size:16px;padding-top:4px">HIGH RISK</div>
+    <div class="s-sub">No cases &middot; PHEOC activated</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="show('updates',this)">&#x1F4F0; Daily Updates</div>
+  <div class="tab" onclick="show('ss',this)">&#x1F1F8;&#x1F1F8; South Sudan<span class="tab-dot"></span></div>
+  <div class="tab" onclick="show('actors',this)">&#x1F310; Actors &amp; Response</div>
+  <div class="tab" onclick="show('map',this)">&#x1F5FA; Outbreak Map</div>
+  <div class="tab" onclick="show('timeline',this)">&#x1F4C5; Timeline</div>
+</div>
+
+<!-- UPDATES -->
+<div id="pane-updates" class="pane active">
+  <div class="two-col">
+    <div class="col">
+      <div class="col-hdr">
+        <span class="cflag">&#x1F1E8;&#x1F1E9;</span>
+        <span class="cname">DRC &mdash; Ituri &amp; Nord-Kivu</span>
+        <span class="cpill cp-r">ACTIVE OUTBREAK</span>
+      </div>
+      <div class="upd"><div class="upd-d">May 22</div><div class="upd-b"><span class="tg tg-r">NEW</span>Ebola now confirmed in <strong>Butembo and Goma</strong> (Nord-Kivu Province) &mdash; both major urban centres. A woman infected in Ituri travelled to Goma, a city currently under M23 rebel control. WHO confirms cases in Butembo and Goma per UN News report. This marks a critical escalation: Goma is a major population hub and transport node bordering Rwanda. <strong>WHO official Dr Ancia warning: "It is not two months before the outbreak will be done &mdash; remember the previous one took two years."</strong></div></div>
+      <div class="upd"><div class="upd-d">May 22</div><div class="upd-b">WHO still cannot confirm "patient zero." Dr Ancia from Bunia: <strong>"What we know is that on May 5, a person died in Bunia. The body was brought back to Mongbwalu and put in a coffin"</strong> &mdash; this funeral event believed to have sparked the spread. Origin of the index case remains under investigation. Standard field tests often miss Bundibugyo, compounding detection challenges.</div></div>
+      <div class="upd"><div class="upd-d">May 21</div><div class="upd-b">WHO press conference confirms <strong>600+ suspected cases, 51 confirmed, 139 deaths</strong> &mdash; <strong>third-largest Ebola outbreak on record.</strong> WHO emergencies chief Ihekweazu: <em>"Our absolute priority is to identify all existing chains of transmission."</em> Outbreak expected to continue growing. First suspected death traced to <strong>April 20.</strong></div></div>
+      <div class="upd"><div class="upd-d">May 21</div><div class="upd-b"><strong>Super-spreader event</strong> suspected: WHO believes the first death was followed by amplified transmission either at a funeral or a healthcare facility. Investigations ongoing. Outbreak was declared last Friday; experts alarmed it spread undetected across a densely populated area.</div></div>
+      <div class="upd"><div class="upd-d">May 20</div><div class="upd-b"><span class="tg tg-r">PHECS</span>Africa CDC declares <strong>continental health emergency.</strong> <strong>South Africa pledges $2.5 million</strong> to the response. M23 rebels guarding the Rodolphe Merieux INRB laboratory in Goma where samples are tested &mdash; a sign of how conflict-entangled the response is.</div></div>
+      <div class="upd"><div class="upd-d">May 19</div><div class="upd-b">Cases rose <strong>103% in 96 hours</strong> (246 to 500+). MSF dispatches 8 tons of supplies Kinshasa &rarr; Bunia. US Dr <strong>Peter Stafford</strong> (missionary physician, Nyankunde Hospital) tests positive &mdash; airlifted to <strong>Berlin Char&iacute;te hospital</strong> May 19. Second US doctor exposed in Uganda transferred to <strong>Prague</strong> for monitoring. 6 high-risk contacts monitored in Germany and Czech Republic.</div></div>
+      <div class="upd"><div class="upd-d">May 18</div><div class="upd-b"><strong>US/DHS Title 42 entry restrictions</strong> implemented. Reuters reports confirmation was delayed by <strong>lab missteps</strong> &mdash; initial samples tested only for Zaire strain; escalation for further testing did not happen quickly enough. US mobilises initial <strong>$13 million</strong> within 48 hours.</div></div>
+      <div class="upd"><div class="upd-d">May 17</div><div class="upd-b"><span class="tg tg-r">PHEIC</span><strong>WHO declares PHEIC</strong> &mdash; first ever without Emergency Committee pre-consultation. DRC cabinet emergency session. WHO CFE approves $3.9M. EU spokesperson: risk of outbreak in Europe is "very low."</div></div>
+      <div class="upd"><div class="upd-d">May 15</div><div class="upd-b"><strong>DRC MoH confirms 17th outbreak.</strong> Bundibugyo strain &mdash; no vaccine, no treatment. 4 healthcare workers died in 4 days at Mongbwalu General Referral Hospital. INRB confirms virus in 8/13 samples.</div></div>
+      <div class="upd"><div class="upd-d">Apr 20</div><div class="upd-b"><strong>First suspected death</strong> (retrospectively identified by WHO). Index case: health worker in Mongbwalu develops symptoms Apr 24. A <strong>4-week detection gap</strong> plus co-circulating arboviruses masked the outbreak. Critical IPC breaches at Mongbwalu hospital enabled rapid spread among healthcare workers.</div></div>
+    </div>
+    <div class="col">
+      <div class="col-hdr">
+        <span class="cflag">&#x1F1FA;&#x1F1EC;</span>
+        <span class="cname">Uganda</span>
+        <span class="cpill cp-a">2 CONFIRMED &middot; CONTAINED</span>
+      </div>
+      <div class="upd"><div class="upd-d">May 22</div><div class="upd-b"><span class="tg tg-r">NEW</span><strong>Ugandans who attended a burial in eastern DRC have returned to Uganda and developed Ebola symptoms.</strong> They have been taken to <strong>Fort Portal</strong> for treatment &mdash; this represents the first evidence of Ebola in western Uganda beyond the two Kampala imported cases. Fort Portal is in Kabarole District, a different location from Kampala, suggesting possible new transmission chain from the burial event in DRC.</div></div>
+      <div class="upd"><div class="upd-d">May 22</div><div class="upd-b">A person who returned to <strong>Ontario, Canada</strong> after travelling to East Africa was tested for Ebola out of caution on May 20 &mdash; the first precautionary test outside the region. Result not yet public. Highlights growing international concern about travel-related spread beyond Africa.</div></div>
+      <div class="upd"><div class="upd-d">May 21</div><div class="upd-b">CDC confirms <strong>no further local transmission</strong> from the 2 Kampala cases. US Embassy Uganda strictly limiting official travel to western Uganda to mission-critical only. Americans advised to avoid non-essential healthcare facility visits.</div></div>
+      <div class="upd"><div class="upd-d">May 20</div><div class="upd-b"><strong>President Museveni postpones Martyrs Day</strong> (up to 2 million attendees) on WHO DG direct request &mdash; critical mass-gathering prevention. Busunga DRC&ndash;Uganda border crossing has active Ebola screening. M23-controlled INRB lab in Goma processing cross-border samples.</div></div>
+      <div class="upd"><div class="upd-d">May 19</div><div class="upd-b">Uganda government <strong>bans handshakes, hugs, and unnecessary physical contact</strong> nationwide. State Dept issues Level 4 "Do Not Travel." Temperature screening at Kyeshero Hospital. Second US doctor (exposed in Uganda) transferred to Prague, Czech Republic.</div></div>
+      <div class="upd"><div class="upd-d">May 16</div><div class="upd-b"><strong>Second confirmed case</strong> in Kampala &mdash; no apparent link to first case. Both confirmed within 24 hours. Uganda MoH contact tracing intensified. Both cases had travelled from DRC. At time of reporting: <strong>no local transmission identified in Uganda.</strong></div></div>
+      <div class="upd"><div class="upd-d">May 15</div><div class="upd-b"><strong>First confirmed case:</strong> elderly Congolese man admitted May 11 to private Kampala hospital, died May 14. Post-mortem body transferred to DRC. Lab confirmation at Wandegeya Emergency Surveillance Lab on May 15.</div></div>
+      <div class="upd"><div class="upd-d">Context</div><div class="upd-b">Two Kampala cases are "very alarming" per experts &mdash; Kampala is a <strong>major regional travel hub.</strong> Current trends "point towards a potentially much larger outbreak" if transmission chains are not broken. EAC urges all partner states to heighten cross-border coordination.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SOUTH SUDAN -->
+<div id="pane-ss" class="pane">
+  <div class="sp">
+    <div class="alert-box">
+      <div class="ab-ico">&#x26A0;&#xFE0F;</div>
+      <div>
+        <div class="ab-hd">South Sudan: High Risk &mdash; No Confirmed Cases (May 21)</div>
+        <div class="ab-bd">South Sudan shares a direct border with Ituri Province DRC &mdash; the epicentre. Significant cross-border movement, 11,000+ South Sudanese refugees currently in Ituri, no prior Ebola outbreak experience, and no Bundibugyo vaccine make this one of the most vulnerable at-risk countries. All WHO, Africa CDC, UNICEF, and partner preparedness protocols are activated. Juba is approximately 400km from the nearest affected health zones. The country is also simultaneously managing a severe cholera outbreak (102,000+ cases), active armed conflict, and 300,000+ displaced people &mdash; all of which would severely complicate any Ebola response.</div>
+      </div>
+    </div>
+    <div class="chips">
+      <div class="chip"><span class="chip-dot" style="background:#C0392B"></span>Direct border with Ituri epicentre</div>
+      <div class="chip"><span class="chip-dot" style="background:#C0392B"></span>No Bundibugyo vaccine available</div>
+      <div class="chip"><span class="chip-dot" style="background:#BA7517"></span>11,000+ SS refugees in Ituri</div>
+      <div class="chip"><span class="chip-dot" style="background:#BA7517"></span>No prior Ebola outbreak experience</div>
+      <div class="chip"><span class="chip-dot" style="background:#BA7517"></span>Cholera outbreak ongoing (102K+ cases)</div>
+      <div class="chip"><span class="chip-dot" style="background:#BA7517"></span>300,000+ people displaced in Jonglei</div>
+      <div class="chip"><span class="chip-dot" style="background:#185FA5"></span>US Level 4 travel advisory active</div>
+      <div class="chip"><span class="chip-dot" style="background:#185FA5"></span>PHEOC activated &middot; WHO/UNICEF/Africa CDC support active</div>
+    </div>
+
+    <div class="sec-t">Latest updates &middot; South Sudan</div>
+    <div class="upd"><div class="upd-d">May 21</div><div class="upd-b">WHO press conference in Geneva (May 20) confirms outbreak expected to grow. South Sudan PHEOC remains on alert. No new cases confirmed. Africa CDC reaffirms South Sudan as a priority at-risk country in all continental briefings.</div></div>
+    <div class="upd"><div class="upd-d">May 20</div><div class="upd-b">Africa CDC DG: <strong>"I express my support for South Sudan, which is geographically close to Ituri province, in advancing its preparedness measures."</strong> <strong>South Africa pledges $2.5M</strong> to the continental response, part of which supports preparedness in at-risk countries including South Sudan.</div></div>
+    <div class="upd"><div class="upd-d">May 19</div><div class="upd-b">US State Dept issues <strong>Level 4 "Do Not Travel" for South Sudan.</strong> Entry ban applies to non-US citizens who visited South Sudan in past 21 days. US Embassy in Juba remains operational and is part of the interagency regional monitoring group.</div></div>
+    <div class="upd"><div class="upd-d">May 18</div><div class="upd-b">EAC partner states including South Sudan <strong>formally urged to heighten surveillance, strengthen emergency preparedness, and intensify cross-border coordination.</strong></div></div>
+    <div class="upd"><div class="upd-d">May 16</div><div class="upd-b">South Sudan <strong>participates in Africa CDC emergency coordination meeting</strong> alongside DRC and Uganda. Focus: cross-border surveillance at South Sudan&ndash;Ituri frontier. UNICEF coordinating support for 11,000 South Sudanese refugees in Ituri.</div></div>
+    <div class="upd"><div class="upd-d">May 15</div><div class="upd-b">DRC, Uganda, and South Sudan jointly take <strong>"immediate actions to strengthen surveillance, preparedness and response"</strong> with Africa CDC and partners. PHEOC placed on alert status.</div></div>
+
+    <div class="sec-t">Humanitarian actors &amp; response in South Sudan</div>
+    <div class="upd"><div class="upd-d">WHO</div><div class="upd-b"><strong>WHO South Sudan country office</strong> has activated border health protocols. Key actions: strengthening surveillance at Points of Entry (PoE) along the DRC border including Juba International Airport; deploying Rapid Response Teams trained for EVD; and providing IPC supplies and technical guidance. WHO has explicitly identified South Sudan as requiring a <strong>higher level of international support than Uganda</strong> due to absence of prior outbreak experience. Cross-border coordination active with WHO DRC and WHO Uganda. WHO notes PoE screening must be <em>immediately</em> reinforced to prevent cross-border transmission from Ituri.</div></div>
+    <div class="upd"><div class="upd-d">UNICEF</div><div class="upd-b">UNICEF coordinating Ebola preparedness support for South Sudan: supply pipelines for PPE and hygiene materials to high-risk border states; community health workers mobilised for risk communication in DRC-border communities; coordinating for <strong>11,000+ South Sudanese refugees currently in Ituri Province.</strong> UNICEF explicitly flags South Sudan requires higher international support than Uganda. Priority areas: community engagement, risk communication, trust-building in border communities.</div></div>
+    <div class="upd"><div class="upd-d">IOM</div><div class="upd-b">IOM monitoring cross-border population movement between South Sudan and DRC, focusing on fluid displacement patterns in border states (Western Equatoria, Torit, Gbudue). IOM data: <strong>nearly 300,000 displaced in Jonglei</strong>, 1.35 million people have lost access to healthcare following destruction of 26 health facilities &mdash; severely undermining Ebola detection capacity. IOM supporting PoE screening assessments at Nimule and Gangura crossings.</div></div>
+    <div class="upd"><div class="upd-d">OCHA</div><div class="upd-b">OCHA coordinating South Sudan humanitarian response environment. Ongoing <strong>cholera outbreak: 102,000+ cases, 1,662 deaths.</strong> Insecurity restricting access in Jonglei and Upper Nile. 30,000 displaced people in Nyatim denied access. OCHA flagging dangerous <strong>compound crisis</strong> &mdash; cholera + conflict + displacement + Ebola risk. Any imported Ebola case would arrive in a health system already overwhelmed.</div></div>
+    <div class="upd"><div class="upd-d">Africa CDC</div><div class="upd-b">Africa CDC convened South Sudan health authorities in both May 15 and May 16 emergency coordination meetings. DG statement directly names South Sudan. Support focuses on: cross-border surveillance and alert management; laboratory diagnostic support for Bundibugyo testing capacity at national level; IPC capacity-building at border health posts.</div></div>
+    <div class="upd"><div class="upd-d">IRC</div><div class="upd-b">IRC explicitly flagging South Sudan as a priority cross-border concern. Notes the same US funding cuts that weakened surveillance in Ituri may have analogous effects on health system resilience in South Sudan border areas. IRC assessing Ebola preparedness capacity in its South Sudan operations.</div></div>
+    <div class="upd"><div class="upd-d">MSF</div><div class="upd-b">MSF has significant operational presence in South Sudan. While Ebola resources are concentrated in Ituri and Uganda, MSF has <strong>reinforced IPC protocols across all South Sudan health projects</strong> as precautionary measure. Teams on alert for suspected cases in Western Equatoria and Torit border areas.</div></div>
+    <div class="upd"><div class="upd-d">SS Gov</div><div class="upd-b"><strong>South Sudan Ministry of Health</strong> has activated PHEOC and is working with WHO on border health protocols. Active measures: multi-sectoral Ebola taskforce at national and state levels; screening at Juba International Airport; isolation/holding units at Juba Teaching Hospital and UNMISS Level II facility; national EVD hotline reactivated (toll-free via MTN and Zain). High-risk border states: Yei River, Torit, Maridi, Gbudue, Tambura.</div></div>
+    <div class="upd"><div class="upd-d">US / CDC</div><div class="upd-b">US Embassy Juba remains operational and is part of the regional interagency monitoring group. US State Dept Ebola Response Task Force covers South Sudan in its regional scope. US providing border screening assistance at PoE in at-risk countries including South Sudan.</div></div>
+    <div class="upd"><div class="upd-d">Key gap</div><div class="upd-b"><strong>No vaccine, no treatment:</strong> Bundibugyo has no approved vaccine or therapeutic. WHO estimates a vaccine candidate ~2 months away at earliest. South Sudan cannot use ring vaccination &mdash; containment depends entirely on surveillance, IPC, and isolation. The compounding crisis (cholera, conflict, displacement) makes this extremely challenging.</div></div>
+  </div>
+</div>
+
+<!-- ACTORS -->
+<div id="pane-actors" class="pane">
+  <div class="actors-wrap">
+    <div class="concern">
+      <strong>&#x26A0; Critical accountability issue:</strong> The IRC officially warned (May 19) that <strong>US government funding cuts from March 2025</strong> reduced Ituri health programming from 5 to 2 coverage areas &mdash; directly weakening disease surveillance at what is now the outbreak epicentre. WHO DG Tedros said May 20 it is "too early to say" whether funding cuts contributed to delays. Reuters reports confirmation was slowed by lab missteps &mdash; initial failure to test for anything beyond the Zaire strain.
+    </div>
+
+    <div class="a-sec-lbl">New funding pledged (May 20&ndash;21)</div>
+    <div class="fund-wrap">
+      <table class="ftable">
+        <thead><tr><th>Actor</th><th>Amount</th><th>Purpose</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>US State Dept (initial)</td><td><span class="fa-b">$13M</span></td><td>Within 48h of confirmation: surveillance, lab, safe burials, entry/exit screening, clinical management</td><td>Mobilised</td></tr>
+          <tr><td>US (treatment clinics)</td><td><span class="fa-b">TBD</span></td><td>Up to 50 Ebola response clinics in DRC and Uganda</td><td>Committed</td></tr>
+          <tr><td>South Africa (NEW)</td><td><span class="fa-g">$2.5M</span></td><td>Continental Ebola response via Africa CDC &mdash; pledged May 20</td><td>Pledged</td></tr>
+          <tr><td>WHO (CFE)</td><td><span class="fa-r">$3.9M</span></td><td>Contingency Fund for Emergencies: operations, deployment, supplies</td><td>Approved</td></tr>
+          <tr><td>World Bank / Pandemic Fund</td><td><span class="fa-a">Assessing</span></td><td>IDA Crisis Response Window &mdash; post-PHEIC disbursement under assessment</td><td>In process</td></tr>
+          <tr><td>EU (ECHO)</td><td><span class="fa-a">TBD</span></td><td>Emergency humanitarian funding assessed; EU says risk to Europe "very low"</td><td>Pending</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="a-sec-lbl">UN System</div>
+    <div class="ag">
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F30D;</div><div><div class="aname">WHO</div><div class="atype">UN Lead Health Agency</div></div><span class="asto as-r">PHEIC Active</span></div>
+        <ul class="alist">
+          <li><span class="hl">PHEIC declared May 17</span> &mdash; first ever without Emergency Committee pre-consultation</li>
+          <li>May 20 press conference: outbreak is <strong>3rd largest ever</strong>, spread undetected ~2 months</li>
+          <li>First suspected death: <strong>April 20</strong> &mdash; super-spreader event at funeral or health facility suspected</li>
+          <li><span class="hlb">$3.9M</span> from Contingency Fund for Emergencies approved</li>
+          <li>WHO emergencies chief Ihekweazu: priority is identifying all chains of transmission</li>
+          <li>Tedros: too early to say if funding cuts contributed to delays &mdash; but acknowledged the question</li>
+          <li>Supporting DRC, Uganda, South Sudan simultaneously; vaccine candidate ~2 months away</li>
+        </ul>
+      </div>
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F9D2;</div><div><div class="aname">UNICEF</div><div class="atype">Children &amp; Community Response</div></div><span class="asto as-g">Deployed</span></div>
+        <ul class="alist">
+          <li>Emergency Rapid Response team in DRC for risk communication and community engagement</li>
+          <li><strong>2,000+ community health workers</strong> deployed in DRC</li>
+          <li>PPE + sanitary supplies for 2,000+ refugees in Goma; coordinating for 11,000 South Sudanese in Ituri</li>
+          <li>Called for <strong>immediate, safe, sustained humanitarian access</strong> to eastern DRC</li>
+          <li>South Sudan: requires higher international support than Uganda &mdash; no prior EVD experience</li>
+        </ul>
+      </div>
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F3D5;</div><div><div class="aname">OCHA / WFP / IOM / FAO</div><div class="atype">UN Humanitarian System</div></div><span class="asto as-g">Active</span></div>
+        <ul class="alist">
+          <li><strong>OCHA:</strong> coordinating access in Ituri (1.9M people in need); 273,000+ IDPs; 11 incidents against humanitarian actors</li>
+          <li><strong>WFP:</strong> logistics support in hard-to-reach Ituri areas; aerial supply support</li>
+          <li><strong>IOM:</strong> monitoring cross-border movement at DRC&ndash;Uganda&ndash;South Sudan borders; PoE screening assessments</li>
+          <li><strong>FAO:</strong> food security monitoring; One Health zoonotic spillover investigation at Mongbwalu mining area</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="a-sec-lbl">Medical &amp; Humanitarian NGOs</div>
+    <div class="ag">
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F3E5;</div><div><div class="aname">MSF / Doctors Without Borders</div><div class="atype">Emergency Medical Response</div></div><span class="asto as-g">Deployed</span></div>
+        <ul class="alist">
+          <li><span class="hl">Ebola Treatment Centre</span> established in Mongbwalu with DRC MoH</li>
+          <li><strong>~530 staff</strong> (50 international + 480 local) deployed to affected areas</li>
+          <li>60,000 PPE sets en route; 8 tons supplies sent Kinshasa &rarr; Bunia May 19</li>
+          <li>Community engagement active; IPC reinforced across all DRC health projects</li>
+          <li>Uganda MoH notified of MSF readiness to support; South Sudan IPC protocols reinforced</li>
+        </ul>
+      </div>
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F198;</div><div><div class="aname">IRC</div><div class="atype">Emergency Humanitarian Response</div></div><span class="asto as-r">Alert</span></div>
+        <ul class="alist">
+          <li>Emergency response launched May 18 &mdash; PPE, IPC activities in DRC</li>
+          <li><span class="hl">Warning:</span> US funding cuts from March 2025 reduced Ituri programming 5 &rarr; 2 areas, directly weakening outbreak detection</li>
+          <li>Cases rose 103% in 96 hours; IRC links this to weakened surveillance infrastructure</li>
+          <li>Particularly concerned about South Sudan and cross-border transmission risk</li>
+        </ul>
+      </div>
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F534;</div><div><div class="aname">IFRC / Save the Children / CARE</div><div class="atype">Community &amp; Protection Response</div></div><span class="asto as-g">Active</span></div>
+        <ul class="alist">
+          <li><strong>IFRC:</strong> safe and dignified burials; community engagement; contact tracing support; risk communication in local languages</li>
+          <li><strong>Save the Children:</strong> launching large-scale response; assisting up to 189,290 conflict-affected people in Ituri; priority on child protection and psychosocial support</li>
+          <li><strong>CARE:</strong> DRC ranked 7th on IRC Emergency Watchlist; gender-based violence risks rising; adapting Uganda field operations; women account for two-thirds of DRC cases</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="a-sec-lbl">Governments &amp; Political Actors</div>
+    <div class="ag">
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F1FA;&#x1F1F8;</div><div><div class="aname">US State Dept / CDC / DHS</div><div class="atype">US Government Response</div></div><span class="asto as-g">Active</span></div>
+        <ul class="alist">
+          <li>Ebola Response Task Force activated within hours of confirmation; daily leadership-level meetings</li>
+          <li><span class="hlb">$13M initial aid</span> mobilised within 48 hours (surveillance, lab, safe burials, entry/exit screening)</li>
+          <li>Up to <span class="hlb">50 Ebola clinics</span> to be established in DRC and Uganda</li>
+          <li><strong>Title 42</strong> entry ban: non-US citizens from DRC, Uganda, South Sudan (21 days)</li>
+          <li>Dr Peter Stafford evacuated to Berlin; second doctor transferred to Prague</li>
+          <li>Embassies in DRC, Uganda, South Sudan all remain operational</li>
+          <li>Limiting official travel to western Uganda to mission-critical only</li>
+        </ul>
+      </div>
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F1FA;&#x1F1EC;</div><div><div class="aname">Uganda MoH / Museveni</div><div class="atype">National Response</div></div><span class="asto as-g">Active</span></div>
+        <ul class="alist">
+          <li>Contact tracing intensive in Kampala; no local transmission confirmed as of May 21</li>
+          <li><strong>Nationwide ban on handshakes, hugs, and unnecessary physical contact</strong> (May 19)</li>
+          <li>Museveni postponed Martyrs Day mass gathering at WHO DG direct request</li>
+          <li>Temperature screening at hospitals and border crossings; Busunga crossing active screening</li>
+        </ul>
+      </div>
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F30D;</div><div><div class="aname">Africa CDC / South Africa</div><div class="atype">Continental Coordination</div></div><span class="asto as-r">PHECS Active</span></div>
+        <ul class="alist">
+          <li><span class="hl">PHECS declared May 20</span> &mdash; Public Health Emergency of Continental Security</li>
+          <li>130+ participant coordination meeting convened May 16</li>
+          <li>Multidisciplinary surge teams deploying to DRC and Uganda</li>
+          <li><strong>South Africa pledges $2.5M</strong> to continental Ebola response (May 20)</li>
+          <li>DG Kaseya: "Africa's health security is indivisible"</li>
+        </ul>
+      </div>
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F1EA;&#x1F1FA;</div><div><div class="aname">EU / Czech Republic / Germany</div><div class="atype">European Response</div></div><span class="asto as-a">Active</span></div>
+        <ul class="alist">
+          <li>EU spokesperson: risk to Europe is "very low" &mdash; "diseases do not stop at borders"</li>
+          <li><strong>Germany (Charit&eacute; Berlin):</strong> treating Dr Peter Stafford in specialised isolation ward &mdash; same unit used for 2014&ndash;16 West Africa Ebola evacuees</li>
+          <li><strong>Czech Republic:</strong> receiving second exposed US doctor for monitoring in Prague hospital</li>
+          <li>Global Health Resilience Initiative adopted by EU in May 2026</li>
+          <li>ECDC participating in Africa CDC regional coordination</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="a-sec-lbl">Finance &amp; Research Partners</div>
+    <div class="ag">
+      <div class="acard">
+        <div class="atop"><div class="aemoji">&#x1F489;</div><div><div class="aname">CEPI / Gavi / Wellcome / Gates / Pharma</div><div class="atype">Vaccine &amp; Treatment R&amp;D</div></div><span class="asto as-a">No vaccine yet</span></div>
+        <ul class="alist">
+          <li>CEPI activating Bundibugyo vaccine pipeline under 100 Days Mission framework</li>
+          <li>WHO estimate: vaccine candidate ~2 months away; scale-up much later</li>
+          <li><span class="hl">No licensed vaccine or specific therapeutic for Bundibugyo currently exists</span></li>
+          <li>BioNTech, Moderna, Evotec: mRNA platform assessment; Gilead, Merck, J&amp;J, Regeneron: antiviral/antibody candidates; Abbott, Cepheid: rapid diagnostics development</li>
+          <li>Challenge: Bundibugyo is genetically distinct from Zaire &mdash; prior approvals do not transfer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div id="pane-map" class="pane">
+  <div class="map-wrap">
+    <div class="map-card">
+      <svg width="100%" viewBox="0 0 680 440" role="img" style="display:block">
+        <title>Ebola 2026 outbreak map</title>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <rect width="680" height="440" fill="#E8E4DC" rx="8"/>
+        <path d="M38 80 L185 58 L248 78 L285 120 L295 188 L272 252 L245 315 L212 368 L145 388 L78 368 L38 308 L18 205 L28 140 Z" fill="#FFE8E0" stroke="#C09080" stroke-width="0.8"/>
+        <text x="128" y="152" font-size="14" font-weight="600" fill="#8B1A1A" text-anchor="middle" font-family="system-ui,sans-serif">DRC</text>
+        <text x="128" y="168" font-size="10" fill="#A04030" text-anchor="middle" font-family="system-ui,sans-serif">Dem. Republic of Congo</text>
+        <path d="M295 120 L360 98 L400 132 L410 195 L375 238 L322 248 L295 205 L283 163 Z" fill="#FFFBE8" stroke="#C8A840" stroke-width="0.8"/>
+        <text x="347" y="168" font-size="12" font-weight="600" fill="#7A4A08" text-anchor="middle" font-family="system-ui,sans-serif">Uganda</text>
+        <path d="M185 58 L248 18 L385 8 L428 48 L395 102 L360 98 L295 120 L248 78 Z" fill="#E8F2FF" stroke="#8AAECC" stroke-width="0.8"/>
+        <text x="305" y="55" font-size="12" font-weight="600" fill="#185FA5" text-anchor="middle" font-family="system-ui,sans-serif">South Sudan</text>
+        <path d="M375 240 L408 228 L416 262 L384 270 Z" fill="#F2F2EE" stroke="#B0B0A8" stroke-width="0.6"/>
+        <text x="398" y="252" font-size="9" fill="#888880" text-anchor="middle" font-family="system-ui,sans-serif">Rwanda</text>
+        <path d="M374 272 L408 264 L412 300 L380 306 Z" fill="#F2F2EE" stroke="#B0B0A8" stroke-width="0.6"/>
+        <text x="395" y="290" font-size="9" fill="#888880" text-anchor="middle" font-family="system-ui,sans-serif">Burundi</text>
+        <path d="M214 368 L348 345 L390 315 L418 338 L408 400 L308 418 L200 410 Z" fill="#F2F2EE" stroke="#C0C0B8" stroke-width="0.6"/>
+        <text x="308" y="382" font-size="10" fill="#999990" text-anchor="middle" font-family="system-ui,sans-serif">Tanzania</text>
+        <path d="M400 132 L460 95 L492 142 L480 200 L430 220 L410 195 Z" fill="#F2F2EE" stroke="#B0B0A8" stroke-width="0.6"/>
+        <text x="445" y="162" font-size="10" fill="#888880" text-anchor="middle" font-family="system-ui,sans-serif">Kenya</text>
+        <ellipse cx="255" cy="148" rx="52" ry="44" fill="#C0392B" fill-opacity="0.14" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <circle cx="255" cy="148" r="10" fill="#C0392B" fill-opacity="0.9"/>
+        <circle cx="255" cy="148" r="10" fill="none" stroke="#C0392B" stroke-width="2.5" opacity="0.6">
+          <animate attributeName="r" values="10;26;10" dur="2.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.6;0;0.6" dur="2.4s" repeatCount="indefinite"/>
+        </circle>
+        <text x="255" y="106" font-size="10" font-weight="600" fill="#8B1A1A" text-anchor="middle" font-family="system-ui,sans-serif">Ituri Province</text>
+        <text x="255" y="118" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui,sans-serif">Epicentre</text>
+        <circle cx="255" cy="155" r="4" fill="#C0392B"/>
+        <text x="274" y="158" font-size="9" fill="#7B1A1A" font-family="system-ui,sans-serif">Bunia</text>
+        <circle cx="235" cy="134" r="3.5" fill="#E8593C"/>
+        <text x="225" y="126" font-size="9" fill="#8B1A1A" text-anchor="end" font-family="system-ui,sans-serif">Mongbwalu (origin)</text>
+        <circle cx="295" cy="238" r="4" fill="#E8593C"/>
+        <text x="283" y="252" font-size="9" fill="#8B1A1A" text-anchor="middle" font-family="system-ui,sans-serif">Goma / Nord-Kivu</text>
+        <circle cx="358" cy="182" r="8" fill="#BA7517" fill-opacity="0.88"/>
+        <circle cx="358" cy="182" r="8" fill="none" stroke="#BA7517" stroke-width="2" opacity="0.5">
+          <animate attributeName="r" values="8;20;8" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <text x="375" y="180" font-size="9" font-weight="600" fill="#7A4A08" font-family="system-ui,sans-serif">Kampala</text>
+        <text x="375" y="190" font-size="8" fill="#BA7517" font-family="system-ui,sans-serif">2 confirmed &middot; no local spread</text>
+        <rect x="283" y="142" width="9" height="9" rx="2" fill="#185FA5" fill-opacity="0.8"/>
+        <text x="298" y="150" font-size="8" fill="#185FA5" font-family="system-ui,sans-serif">Busunga crossing</text>
+        <path d="M195 65 L248 82 L288 122 L248 128 L198 110 L175 82 Z" fill="#185FA5" fill-opacity="0.12" stroke="#185FA5" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="222" y="100" font-size="9" fill="#185FA5" text-anchor="middle" font-family="system-ui,sans-serif">Border risk zone</text>
+        <circle cx="298" cy="38" r="5" fill="#185FA5" fill-opacity="0.75"/>
+        <text x="310" y="42" font-size="9" fill="#185FA5" font-family="system-ui,sans-serif">Juba</text>
+        <path d="M276 148 Q312 140 340 168" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-dasharray="6 3" marker-end="url(#arr)" opacity="0.75"/>
+        <text x="308" y="144" font-size="8" fill="#BA7517" text-anchor="middle" font-family="system-ui,sans-serif">confirmed spread</text>
+        <path d="M245 118 Q244 98 250 82" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arr)" opacity="0.65"/>
+        <text x="226" y="96" font-size="8" fill="#185FA5" text-anchor="end" font-family="system-ui,sans-serif">risk of spread</text>
+        <rect x="452" y="15" width="215" height="175" rx="8" fill="#FFFEFB" stroke="#D0C8B8" stroke-width="0.8" opacity="0.95"/>
+        <text x="560" y="37" font-size="11" font-weight="600" fill="#3D3D3A" text-anchor="middle" font-family="system-ui,sans-serif">Map Legend</text>
+        <circle cx="472" cy="60" r="7" fill="#C0392B" fill-opacity="0.88"/>
+        <text x="486" y="64" font-size="10" fill="#3D3D3A" font-family="system-ui,sans-serif">Active outbreak (epicentre)</text>
+        <circle cx="472" cy="84" r="6" fill="#E8593C"/>
+        <text x="486" y="88" font-size="10" fill="#3D3D3A" font-family="system-ui,sans-serif">Extended outbreak zone</text>
+        <circle cx="472" cy="108" r="6" fill="#BA7517"/>
+        <text x="486" y="112" font-size="10" fill="#3D3D3A" font-family="system-ui,sans-serif">Confirmed cases (Kampala)</text>
+        <circle cx="472" cy="132" r="5" fill="#185FA5" opacity="0.75"/>
+        <text x="486" y="136" font-size="10" fill="#3D3D3A" font-family="system-ui,sans-serif">High-risk / preparedness</text>
+        <rect x="466" y="147" width="10" height="10" rx="2" fill="#185FA5" opacity="0.75"/>
+        <text x="486" y="156" font-size="10" fill="#3D3D3A" font-family="system-ui,sans-serif">Active border screening</text>
+        <line x1="465" y1="175" x2="481" y2="175" stroke="#BA7517" stroke-width="1.8" stroke-dasharray="5 3"/>
+        <text x="486" y="179" font-size="10" fill="#3D3D3A" font-family="system-ui,sans-serif">Confirmed spread</text>
+        <text x="340" y="428" font-size="9" fill="#888880" text-anchor="middle" font-family="system-ui,sans-serif">Schematic map &middot; May 21, 2026 &middot; Sources: WHO, CDC, Africa CDC, MSF, Reuters, Al Jazeera</text>
+      </svg>
+      <div class="map-leg">
+        <div class="leg"><div class="leg-dot" style="background:#C0392B"></div>Epicentre (Ituri, DRC)</div>
+        <div class="leg"><div class="leg-dot" style="background:#E8593C"></div>Extended outbreak (Nord-Kivu)</div>
+        <div class="leg"><div class="leg-dot" style="background:#BA7517"></div>Confirmed cases (Kampala, Uganda)</div>
+        <div class="leg"><div class="leg-dot" style="background:#185FA5;opacity:.75"></div>High-risk / preparedness (S. Sudan)</div>
+      </div>
+    </div>
+    <p class="map-note">Outbreak originated in Mongbwalu, Ituri Province, DRC. WHO believes it started ~April 20, spreading undetected for 2 months. A funeral event (body transported from Bunia to Mongbwalu) believed to have amplified transmission. Now spread to Bunia, Rwampara, Butembo, and Goma (Nord-Kivu) in DRC, and to Kampala and Fort Portal in Uganda. Ituri borders South Sudan directly. As of May 22: major urban centres now affected, 3rd largest Ebola outbreak on record.</p>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div id="pane-timeline" class="pane">
+  <div class="tl-wrap">
+    <div class="tl-item">
+      <div class="tl-dot tl-r">&#x1F6A8;</div>
+      <div><div class="tl-date">May 22, 2026</div><div class="tl-title">Ebola reaches Goma &amp; Butembo &middot; Ugandans from DRC burial develop symptoms at Fort Portal</div><div class="tl-body">WHO confirms cases in Butembo and Goma &mdash; two major Nord-Kivu urban centres. A woman infected in Ituri travelled to Goma (M23-controlled). Ugandans who attended a burial in eastern DRC return home with symptoms and are admitted to Fort Portal. Canada tests a returning East Africa traveller in Ontario. WHO: patient zero still unconfirmed. Dr Ancia warns the previous outbreak took two years to end.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot tl-r">&#x26A1;</div>
+      <div><div class="tl-date">May 21, 2026</div><div class="tl-title">WHO: 3rd largest Ebola outbreak ever &middot; 600+ cases &middot; 139 deaths</div><div class="tl-body">WHO press conference in Geneva. Emergencies chief Ihekweazu: "Our absolute priority is to identify all existing chains of transmission." Outbreak expected to continue growing. First suspected death traced back to April 20 &mdash; virus was circulating ~2 months before detection. Super-spreader event at funeral or healthcare facility suspected as amplification event.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot tl-r">&#x1F6A8;</div>
+      <div><div class="tl-date">May 19&ndash;20, 2026</div><div class="tl-title">Africa CDC PHECS &middot; South Africa $2.5M &middot; US doctor evacuated to Berlin</div><div class="tl-body">Africa CDC declares continental emergency. South Africa pledges $2.5M. Dr Peter Stafford airlifted to Charit&eacute; Berlin. Second US doctor transferred to Prague. Uganda bans handshakes and hugs. M23 rebels guard INRB lab in Goma.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot tl-r">&#x1F30D;</div>
+      <div><div class="tl-date">May 17&ndash;18, 2026</div><div class="tl-title">WHO PHEIC &middot; US Title 42 restrictions &middot; $13M mobilised</div><div class="tl-body">WHO declares PHEIC &mdash; first ever without Emergency Committee pre-consultation. DRC cabinet emergency session. US/DHS Title 42 entry restrictions for DRC, Uganda, South Sudan. US mobilises $13M initial aid within 48 hours. Reuters reports lab missteps delayed confirmation.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot tl-a">&#x1F4CB;</div>
+      <div><div class="tl-date">May 15&ndash;16, 2026</div><div class="tl-title">DRC confirms 17th outbreak &middot; Uganda first case &middot; 130+ participants in coordination</div><div class="tl-body">DRC MoH confirms Bundibugyo. Uganda confirms first imported case (died May 14 in Kampala). Africa CDC convenes 130+ participant emergency meeting including South Sudan, WHO, UNICEF, World Bank, pharma companies, donors. Second Uganda case confirmed May 16 with no link to first.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot tl-a">&#x1F52C;</div>
+      <div><div class="tl-date">May 5&ndash;13, 2026</div><div class="tl-title">WHO alerted &middot; 4 HCW deaths in 4 days &middot; strain misidentification</div><div class="tl-body">WHO alerted May 5 to unknown high-mortality illness in Mongbwalu. 4 healthcare workers died in 4 days at Mongbwalu General Hospital. Initial tests false-negative (Zaire strain kits). 4-week detection gap. Co-circulating arboviruses masked Ebola symptoms. Rapid response teams complete investigation May 13.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot tl-a">&#x1F4CD;</div>
+      <div><div class="tl-date">April 20&ndash;24, 2026</div><div class="tl-title">First suspected death &middot; Index case &middot; Super-spreader event</div><div class="tl-body">First suspected Ebola death: April 20 (retrospectively identified by WHO). Index case: health worker in Mongbwalu develops symptoms April 24. WHO believes a super-spreader event &mdash; either a funeral or healthcare facility &mdash; caused rapid early amplification across multiple health zones before detection.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot tl-b">&#x2705;</div>
+      <div><div class="tl-date">December 2025</div><div class="tl-title">Previous DRC Ebola outbreak (Zaire strain) declared over</div><div class="tl-body">DRC's 16th Ebola outbreak ends. The current 17th outbreak (Bundibugyo) is only the third-ever Bundibugyo outbreak recorded. It has become the third-largest Ebola outbreak on record in under 2 weeks of being declared.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ftr">
+  <div>
+    <div style="font-size:10px;color:#8A8880;margin-bottom:5px">Sources &middot; May 22, 2026</div>
+    <div class="srcs">
+      <span class="src">WHO DON</span><span class="src">WHO Press Conf May 20</span><span class="src">US CDC</span><span class="src">Africa CDC</span><span class="src">MSF</span><span class="src">UNICEF</span><span class="src">IRC</span><span class="src">Reuters</span><span class="src">Al Jazeera</span><span class="src">NPR</span><span class="src">UN News</span><span class="src">Wikipedia</span><span class="src">Save the Children</span><span class="src">CARE</span>
+    </div>
+  </div>
+  <a class="ftr-btn" href="https://www.who.int/emergencies/disease-outbreak-news" target="_blank">&#x1F517; WHO Latest Updates</a>
+</div>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById('pane-' + id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
