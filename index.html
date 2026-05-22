@@ -208,6 +208,8 @@ a:hover{text-decoration:underline}
   <div class="tab" onclick="show('ss',this)">&#x1F1F8;&#x1F1F8; South Sudan<span class="tab-dot"></span></div>
   <div class="tab" onclick="show('actors',this)">&#x1F310; Actors &amp; Response</div>
   <div class="tab" onclick="show('map',this)">&#x1F5FA; Outbreak Map</div>
+  <div class="tab" onclick="show('compare',this)">&#x1F4CA; Historical Comparison</div>
+  <div class="tab" onclick="show('countries',this)">&#x1F30F; Country Measures</div>
   <div class="tab" onclick="show('timeline',this)">&#x1F4C5; Timeline</div>
 </div>
 
@@ -511,6 +513,432 @@ a:hover{text-decoration:underline}
       </div>
     </div>
     <p class="map-note">As of May 22: outbreak has spread from Ituri to Butembo and Goma (Nord-Kivu), and to both Kampala and Fort Portal in Uganda. WHO believes outbreak started ~April 20 and was spreading undetected for ~2 months. MRC London estimates true case count may already exceed 1,000. Goma is under M23 rebel control, complicating response.</p>
+  </div>
+</div>
+
+<!-- HISTORICAL COMPARISON -->
+<div id="pane-compare" class="pane">
+  <div style="padding:16px 20px;overflow-y:auto">
+
+    <div style="font-size:13px;color:#5A5955;line-height:1.7;margin-bottom:18px;max-width:800px;">
+      The 2026 Bundibugyo outbreak has become the <strong>3rd largest Ebola outbreak ever recorded</strong> in under two weeks of being officially declared. With an estimated true case count possibly exceeding 1,000 (MRC London), it could rise further. Unlike all the large outbreaks below, this one has <strong>no vaccine and no approved treatment</strong>.
+    </div>
+
+    <!-- BAR CHART: Cases -->
+    <div style="margin-bottom:28px">
+      <div style="font-size:11px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;display:flex;align-items:center;gap:8px">Cases by outbreak <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span></div>
+      <svg width="100%" viewBox="0 0 700 320" style="display:block;max-width:800px" role="img">
+        <title>Ebola outbreak cases comparison chart</title>
+        <!-- Y-axis labels -->
+        <text x="52" y="30" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">28,600</text>
+        <text x="52" y="94" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~15,000</text>
+        <text x="52" y="156" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~7,500</text>
+        <text x="52" y="218" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~2,500</text>
+        <text x="52" y="280" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">0</text>
+        <!-- Grid lines -->
+        <line x1="58" y1="28" x2="695" y2="28" stroke="#E0DDD6" stroke-width="0.5"/>
+        <line x1="58" y1="92" x2="695" y2="92" stroke="#E0DDD6" stroke-width="0.5"/>
+        <line x1="58" y1="154" x2="695" y2="154" stroke="#E0DDD6" stroke-width="0.5"/>
+        <line x1="58" y1="216" x2="695" y2="216" stroke="#E0DDD6" stroke-width="0.5"/>
+        <line x1="58" y1="278" x2="695" y2="278" stroke="#E0DDD6" stroke-width="1"/>
+
+        <!-- 2014-2016 West Africa: 28,600 cases — bar height = 250 (full) -->
+        <rect x="72" y="28" width="65" height="250" fill="#C0392B" rx="3"/>
+        <text x="104" y="22" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui" font-weight="600">28,600</text>
+        <text x="104" y="295" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2014–16</text>
+        <text x="104" y="306" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">W.Africa</text>
+
+        <!-- 2018-2020 DRC Kivu: 3,470 cases — bar height = 30 -->
+        <rect x="160" y="248" width="65" height="30" fill="#E8593C" rx="3"/>
+        <text x="192" y="242" font-size="9" fill="#E8593C" text-anchor="middle" font-family="system-ui" font-weight="600">3,470</text>
+        <text x="192" y="295" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2018–20</text>
+        <text x="192" y="306" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">DRC Kivu</text>
+
+        <!-- 2026 DRC Bundibugyo: 600+ / est 1000+ — bar height ~15 (confirmed) + shaded for estimate -->
+        <rect x="248" y="261" width="65" height="17" fill="#C0392B" rx="2"/>
+        <rect x="248" y="249" width="65" height="12" fill="#C0392B" fill-opacity="0.35" rx="2"/>
+        <text x="280" y="243" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui" font-weight="600">600+</text>
+        <text x="280" y="234" font-size="8" fill="#8A8880" text-anchor="middle" font-family="system-ui">(est 1,000+)</text>
+        <text x="280" y="295" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui" font-weight="600">2026 ←NOW</text>
+        <text x="280" y="306" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui">DRC/UG</text>
+
+        <!-- 2000 DRC: 425 -->
+        <rect x="336" y="274" width="50" height="4" fill="#BA7517" rx="2"/>
+        <text x="361" y="268" font-size="9" fill="#BA7517" text-anchor="middle" font-family="system-ui">425</text>
+        <text x="361" y="295" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2000</text>
+        <text x="361" y="306" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">DRC</text>
+
+        <!-- 2007 Uganda Bundibugyo: 149 -->
+        <rect x="399" y="276" width="50" height="2" fill="#185FA5" rx="2"/>
+        <text x="424" y="270" font-size="9" fill="#185FA5" text-anchor="middle" font-family="system-ui">149</text>
+        <text x="424" y="295" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2007</text>
+        <text x="424" y="306" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">Uganda BDB</text>
+
+        <!-- 2012 DRC Bundibugyo: 57 -->
+        <rect x="462" y="277" width="50" height="1" fill="#185FA5" rx="2"/>
+        <text x="487" y="271" font-size="9" fill="#185FA5" text-anchor="middle" font-family="system-ui">57</text>
+        <text x="487" y="295" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2012</text>
+        <text x="487" y="306" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">DRC BDB</text>
+
+        <!-- 2022 Uganda Sudan: 164 -->
+        <rect x="525" y="276" width="50" height="2" fill="#BA7517" rx="2"/>
+        <text x="550" y="270" font-size="9" fill="#BA7517" text-anchor="middle" font-family="system-ui">164</text>
+        <text x="550" y="295" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2022</text>
+        <text x="550" y="306" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">Uganda</text>
+
+        <!-- 1976 Original DRC: 318 -->
+        <rect x="588" y="275" width="50" height="3" fill="#6B6A64" rx="2"/>
+        <text x="613" y="269" font-size="9" fill="#6B6A64" text-anchor="middle" font-family="system-ui">318</text>
+        <text x="613" y="295" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">1976</text>
+        <text x="613" y="306" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">DRC (first)</text>
+
+        <!-- Legend -->
+        <rect x="62" y="312" width="10" height="10" fill="#C0392B" rx="2"/>
+        <text x="78" y="321" font-size="9" fill="#5A5955" font-family="system-ui">Confirmed cases</text>
+        <rect x="180" y="312" width="10" height="10" fill="#C0392B" fill-opacity="0.35" rx="2"/>
+        <text x="196" y="321" font-size="9" fill="#5A5955" font-family="system-ui">Estimated true total (MRC London)</text>
+        <rect x="400" y="312" width="10" height="10" fill="#185FA5" rx="2"/>
+        <text x="416" y="321" font-size="9" fill="#5A5955" font-family="system-ui">Bundibugyo strain</text>
+      </svg>
+    </div>
+
+    <!-- BAR CHART: Deaths -->
+    <div style="margin-bottom:20px">
+      <div style="font-size:11px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;display:flex;align-items:center;gap:8px">Deaths by outbreak <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span></div>
+      <svg width="100%" viewBox="0 0 700 300" style="display:block;max-width:800px" role="img">
+        <title>Ebola outbreak deaths comparison chart</title>
+        <text x="52" y="30" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">11,325</text>
+        <text x="52" y="100" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~6,000</text>
+        <text x="52" y="170" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~3,000</text>
+        <text x="52" y="240" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~500</text>
+        <text x="52" y="268" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">0</text>
+        <line x1="58" y1="28" x2="695" y2="28" stroke="#E0DDD6" stroke-width="0.5"/>
+        <line x1="58" y1="98" x2="695" y2="98" stroke="#E0DDD6" stroke-width="0.5"/>
+        <line x1="58" y1="168" x2="695" y2="168" stroke="#E0DDD6" stroke-width="0.5"/>
+        <line x1="58" y1="238" x2="695" y2="238" stroke="#E0DDD6" stroke-width="0.5"/>
+        <line x1="58" y1="265" x2="695" y2="265" stroke="#E0DDD6" stroke-width="1"/>
+
+        <!-- 2014-16: 11,325 deaths -->
+        <rect x="72" y="28" width="65" height="237" fill="#7B1A1A" rx="3"/>
+        <text x="104" y="22" font-size="9" fill="#7B1A1A" text-anchor="middle" font-family="system-ui" font-weight="600">11,325</text>
+        <text x="104" y="280" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2014–16 W.Africa</text>
+
+        <!-- 2018-20: 2,287 deaths — ~48px -->
+        <rect x="160" y="217" width="65" height="48" fill="#A32D2D" rx="3"/>
+        <text x="192" y="211" font-size="9" fill="#A32D2D" text-anchor="middle" font-family="system-ui" font-weight="600">2,287</text>
+        <text x="192" y="280" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2018–20 DRC</text>
+
+        <!-- 2026: 139+ deaths — ~4px confirmed, growing -->
+        <rect x="248" y="261" width="65" height="4" fill="#C0392B" rx="2"/>
+        <text x="280" y="255" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui" font-weight="600">139+</text>
+        <text x="280" y="246" font-size="8" fill="#8A8880" text-anchor="middle" font-family="system-ui">growing</text>
+        <text x="280" y="280" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui" font-weight="600">2026 ←NOW</text>
+
+        <!-- 2000 DRC: 224 -->
+        <rect x="336" y="261" width="50" height="4" fill="#BA7517" rx="2"/>
+        <text x="361" y="255" font-size="9" fill="#BA7517" text-anchor="middle" font-family="system-ui">224</text>
+        <text x="361" y="280" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2000 DRC</text>
+
+        <!-- 2007 Uganda Bundibugyo: 37 -->
+        <rect x="399" y="264" width="50" height="1" fill="#185FA5" rx="2"/>
+        <text x="424" y="258" font-size="9" fill="#185FA5" text-anchor="middle" font-family="system-ui">37</text>
+        <text x="424" y="280" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2007 UG BDB</text>
+
+        <!-- 2012 DRC Bundibugyo: 29 -->
+        <rect x="462" y="264" width="50" height="1" fill="#185FA5" rx="2"/>
+        <text x="487" y="258" font-size="9" fill="#185FA5" text-anchor="middle" font-family="system-ui">29</text>
+        <text x="487" y="280" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2012 DRC BDB</text>
+
+        <!-- 2022 Uganda: 77 -->
+        <rect x="525" y="263" width="50" height="2" fill="#BA7517" rx="2"/>
+        <text x="550" y="257" font-size="9" fill="#BA7517" text-anchor="middle" font-family="system-ui">77</text>
+        <text x="550" y="280" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2022 Uganda</text>
+
+        <!-- 1976: 280 -->
+        <rect x="588" y="260" width="50" height="5" fill="#6B6A64" rx="2"/>
+        <text x="613" y="254" font-size="9" fill="#6B6A64" text-anchor="middle" font-family="system-ui">280</text>
+        <text x="613" y="280" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">1976 DRC</text>
+      </svg>
+    </div>
+
+    <!-- KEY FACTS TABLE -->
+    <div style="font-size:11px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;display:flex;align-items:center;gap:8px">Major outbreaks compared <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span></div>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px">
+        <thead>
+          <tr style="background:#F5F4F0">
+            <th style="text-align:left;padding:7px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Outbreak</th>
+            <th style="text-align:left;padding:7px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Strain</th>
+            <th style="text-align:right;padding:7px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Cases</th>
+            <th style="text-align:right;padding:7px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Deaths</th>
+            <th style="text-align:right;padding:7px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">CFR</th>
+            <th style="text-align:left;padding:7px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Vaccine?</th>
+            <th style="text-align:left;padding:7px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">PHEIC?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#FFF8F8">
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;font-weight:600;color:#C0392B">2026 DRC/Uganda/SS <span style="background:#FFF0EE;color:#7B1A1A;border:1px solid #FAD8CC;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;margin-left:4px">ACTIVE</span></td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#185FA5;font-weight:500">Bundibugyo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right;font-weight:600;color:#C0392B">600+ (est 1,000+)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right;font-weight:600;color:#C0392B">139+ (growing)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">~25%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D;font-weight:600">✗ None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#27500A;font-weight:600">✓ Yes</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;font-weight:500">2014–16 West Africa</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">Zaire</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">28,600</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">11,325</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">40%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#854F0B">→ Led to Ervebo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#27500A">✓ Yes</td>
+          </tr>
+          <tr style="background:#F9F8F4">
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;font-weight:500">2018–20 DRC Kivu</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">Zaire</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">3,470</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">2,287</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">66%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#27500A">✓ Ervebo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#27500A">✓ Yes</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;font-weight:500">2022 Uganda (Sudan)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">Sudan</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">164</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">77</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">47%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D">✗ None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">No</td>
+          </tr>
+          <tr style="background:#F9F8F4">
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;font-weight:500">2012 DRC (Bundibugyo)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#185FA5">Bundibugyo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">57</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">29</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">51%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D">✗ None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">No</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;font-weight:500">2007 Uganda (Bundibugyo)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#185FA5">Bundibugyo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">149</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">37</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">25%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D">✗ None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">No</td>
+          </tr>
+          <tr style="background:#F9F8F4">
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;font-weight:500">2000 DRC/Uganda (Zaire)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">Zaire</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">425</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">224</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">53%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D">✗ None (pre-vaccine)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">No</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 10px;font-weight:500">1976 DRC (first ever)</td>
+            <td style="padding:7px 10px">Zaire</td>
+            <td style="padding:7px 10px;text-align:right">318</td>
+            <td style="padding:7px 10px;text-align:right">280</td>
+            <td style="padding:7px 10px;text-align:right">88%</td>
+            <td style="padding:7px 10px;color:#A32D2D">✗ None</td>
+            <td style="padding:7px 10px">No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:11px;color:#8A8880;margin-top:8px;line-height:1.6">
+      Sources: <a href="https://www.cdc.gov/ebola/outbreaks/index.html" target="_blank" style="color:#185FA5">US CDC Outbreak History</a> &middot; <a href="https://www.mappr.co/ebola-outbreaks-by-country/" target="_blank" style="color:#185FA5">Mappr 2026</a> &middot; <a href="https://theworlddata.com/ebola-outbreak-statistics-in-africa/" target="_blank" style="color:#185FA5">The World Data</a> &middot; CFR = Case Fatality Rate &middot; BDB = Bundibugyo strain &middot; 2026 estimated true total per MRC Centre for Global Infectious Disease Analysis (Imperial College London)
+    </div>
+  </div>
+</div>
+
+<!-- COUNTRY MEASURES -->
+<div id="pane-countries" class="pane">
+  <div style="padding:16px 20px;overflow-y:auto">
+    <div style="font-size:13px;color:#5A5955;line-height:1.7;margin-bottom:16px;max-width:800px">
+      Measures taken by countries worldwide in response to the 2026 Ebola Bundibugyo outbreak. Former CDC Director Robert Redfield has warned the outbreak could <strong>"become a very significant pandemic, probably going to leak into Tanzania, Sudan, and maybe Rwanda."</strong> <a href="https://www.ibtimes.co.uk/global-health-alert-2026-ebola-outbreak-1798240" target="_blank" style="color:#185FA5;font-size:11px">IBTimes</a>
+    </div>
+
+    <!-- DIRECTLY AFFECTED -->
+    <div style="font-size:11px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;display:flex;align-items:center;gap:8px">Directly affected countries <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:20px">
+
+      <div style="background:#fff;border:1px solid #FAD8CC;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇨🇩</span>
+          <div><div style="font-size:13px;font-weight:600">DRC</div><div style="font-size:10px;color:#8A8880">Epicentre — Active outbreak</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#FFF0EE;color:#7B1A1A;border:1px solid #FAD8CC">OUTBREAK</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>MoH declared 17th outbreak May 15; cabinet emergency session May 17</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Rapid response teams deployed to 11+ health zones in Ituri and Nord-Kivu</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Isolation and observation sites being set up in Bunia and Goma</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Safe and dignified burial protocols activated across affected zones</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>INRB laboratory in Goma (M23-controlled) processing samples</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Coordinating with MSF on Mongbwalu Ebola Treatment Centre</li>
+        </ul>
+      </div>
+
+      <div style="background:#fff;border:1px solid #FAC775;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇺🇬</span>
+          <div><div style="font-size:13px;font-weight:600">Uganda</div><div style="font-size:10px;color:#8A8880">2+ confirmed cases</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#FFFAEB;color:#7A4A08;border:1px solid #FAC775">ACTIVE RESPONSE</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span><strong style="color:#1A1A1A">Nationwide ban on handshakes, hugs, and unnecessary physical contact</strong> (May 19)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>President Museveni postponed Martyrs Day mass gathering (2M attendees)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Temperature screening at Busunga border crossing and all hospitals</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Contact tracing in Kampala and Fort Portal intensified</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Emergency Surveillance Lab (Wandegeya) on standby; Level 4 EOC activated</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>EAC called to increase cross-border surveillance with all partner states</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- REGIONAL HIGH-RISK -->
+    <div style="font-size:11px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;display:flex;align-items:center;gap:8px">Regional high-risk countries — measures taken <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:20px">
+
+      <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇸🇸</span>
+          <div><div style="font-size:13px;font-weight:600">South Sudan</div><div style="font-size:10px;color:#8A8880">No cases &middot; DHS officially classified high risk</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#EDF5FF;color:#0C447C;border:1px solid #85B7EB">PREPAREDNESS</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>PHEOC activated at national level; multi-sectoral Ebola taskforce active</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Screening at Juba International Airport</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Isolation/holding units activated at Juba Teaching Hospital and UNMISS Level II</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>National EVD hotline reactivated (toll-free via MTN and Zain)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Participating in Africa CDC emergency coordination (May 16)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Border crossings (Nimule, Gangura) assessed for screening capacity</li>
+        </ul>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇷🇼</span>
+          <div><div style="font-size:13px;font-weight:600">Rwanda</div><div style="font-size:10px;color:#8A8880">Borders DRC (Goma) &middot; South Kivu also affected</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#FFF0EE;color:#7B1A1A;border:1px solid #FAD8CC">BORDER CLOSED</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span><strong style="color:#A32D2D">Closed border with DRC</strong> following South Kivu confirmation (May 22)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>US Embassy in Kigali issues health alert and Dulles screening notice</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>US "Reconsider Travel" advisory for Rwanda (elevated risk)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>2,000+ Rwandan/Burundian refugees in Goma require UNICEF sanitary supplies</li>
+        </ul>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇸🇩</span>
+          <div><div style="font-size:13px;font-weight:600">Sudan</div><div style="font-size:10px;color:#8A8880">Borders DRC and South Sudan</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#EDF5FF;color:#0C447C;border:1px solid #85B7EB">PREPAREDNESS</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Emergency meeting chaired by National Quarantine Administration director (May 17)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Health data forms mandated for all travelers from Ebola-affected countries</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Health screening readied at Port Sudan and Khartoum airports</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Isolation centres being prepared at major ports of entry</li>
+        </ul>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇰🇪</span>
+          <div><div style="font-size:13px;font-weight:600">Kenya</div><div style="font-size:10px;color:#8A8880">Major travel hub &middot; Borders Uganda</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#EDF5FF;color:#0C447C;border:1px solid #85B7EB">SCREENING</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>PHEOC activated; Mpox task force repurposed for Ebola response</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Enhanced screening at Busia, Malaba, Suam border crossings and Jomo Kenyatta Airport</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>85 trained rapid response personnel from Africa Volunteer Health Corps on standby</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Laboratory networks activated; challenges: limited Ebola PPE and dedicated ambulances</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>National and county EOCs strengthened; designated arrival zones for Uganda travelers</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- INTERNATIONAL RESPONSE -->
+    <div style="font-size:11px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;display:flex;align-items:center;gap:8px">International measures <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">
+
+      <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇺🇸</span>
+          <div><div style="font-size:13px;font-weight:600">United States</div><div style="font-size:10px;color:#8A8880">Strongest unilateral measures taken</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#EAF3DE;color:#27500A;border:1px solid #C0DD97">ACTIVE</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span><strong style="color:#1A1A1A">All US-bound flights from DRC/Uganda/SS must land at Dulles Airport</strong> for Ebola screening (May 21)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Title 42 order: entry ban for non-US citizens who visited DRC/Uganda/SS in past 21 days</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Level 4 "Do Not Travel" for DRC, Uganda, South Sudan</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>$23M bilateral aid + up to 50 treatment clinics funded</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>US western Uganda official travel restricted to mission-critical only</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Air France passenger from DRC diverted from US-bound flight to Montreal</li>
+        </ul>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇮🇳</span>
+          <div><div style="font-size:13px;font-weight:600">India</div><div style="font-size:10px;color:#8A8880">Major travel hub &middot; Africa summit cancelled</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#EAF3DE;color:#27500A;border:1px solid #C0DD97">ACTIVE</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span><strong style="color:#1A1A1A">India-Africa Forum Summit postponed indefinitely</strong> (was May 28–31 in New Delhi)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Ebola screening advisories at Delhi IGI and Hyderabad RGIA airports</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Passengers from DRC/Uganda/SS must report to airport health officials if symptomatic</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>High-level health secretary meeting chaired to assess national preparedness</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>India reaffirmed solidarity and readiness to support Africa CDC-led efforts</li>
+        </ul>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🇪🇺</span>
+          <div><div style="font-size:13px;font-weight:600">European Union</div><div style="font-size:10px;color:#8A8880">€7.4M R&D + 6.3 tons supplies delivered</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#EAF3DE;color:#27500A;border:1px solid #C0DD97">ACTIVE</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>EU co-financed WHO AFRO Hub in Dakar delivered <strong style="color:#1A1A1A">6.3 tons of critical supplies</strong> to DRC (PPE, medication, sample kits)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span><strong style="color:#1A1A1A">€7.4 million</strong> contribution to WHO R&D blueprint for fast-tracking clinical trials</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Global Health Resilience Initiative adopted May 2026</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Health Security Committee (HSC) coordinating with member states</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Risk to Europe assessed as "very low" by EU spokesperson</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Germany (Charité Berlin): treating Dr Stafford in high-security isolation. Czech Republic (Bulovka Prague): Dr LaRochelle in quarantine</li>
+        </ul>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:13px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDECE6">
+          <span style="font-size:20px">🌍</span>
+          <div><div style="font-size:13px;font-weight:600">Other countries / WHO guidance</div><div style="font-size:10px;color:#8A8880">WHO: no travel bans recommended</div></div>
+          <span style="margin-left:auto;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:#FFFAEB;color:#7A4A08;border:1px solid #FAC775">MIXED</span>
+        </div>
+        <ul style="list-style:none">
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span><strong style="color:#1A1A1A">WHO guidance: no international travel restrictions or border closures recommended</strong> — Rwanda's closure goes against WHO advice</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>EAC (all partner states): urged to heighten surveillance and cross-border coordination</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Former CDC Director Redfield: warns of potential spread to Tanzania, Sudan, Rwanda</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>Canada: precautionary Ebola test in Ontario for East Africa returnee (May 20)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>South Africa: pledged $2.5M to Africa CDC continental response (May 20)</li>
+          <li style="font-size:12px;color:#5A5955;padding:2px 0 2px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#C8C6BE;display:block"></span>RIVM (Netherlands), UK, Australia: monitoring; no travel bans; border screening guidance issued</li>
+        </ul>
+      </div>
+
+    </div>
+    <div style="font-size:11px;color:#8A8880;margin-top:12px;line-height:1.6">
+      Sources: <a href="https://health.ec.europa.eu/health-security-and-infectious-diseases/crisis-management/ebola-virus-outbreak-2026_en" target="_blank" style="color:#185FA5">EU Commission</a> &middot; <a href="https://www.state.gov/releases/office-of-the-spokesperson/2026/05/ebola-response-update-may-19-2026" target="_blank" style="color:#185FA5">US State Dept</a> &middot; <a href="https://rw.usembassy.gov/health-alert-worldwide-caution-public-health-arrival-restrictions-and-enhanced-ebola-screening-may-21-2026/" target="_blank" style="color:#185FA5">US Embassy Rwanda</a> &middot; <a href="https://www.ibtimes.co.uk/global-health-alert-2026-ebola-outbreak-1798240" target="_blank" style="color:#185FA5">IBTimes / Redfield</a> &middot; <a href="https://www.theweek.in/news/health/2026/05/21/india-africa-forum-summit-postponed-as-ebola-outbreak-triggers-strict-health-screening.html" target="_blank" style="color:#185FA5">The Week India</a>
+    </div>
   </div>
 </div>
 
