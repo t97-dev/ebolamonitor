@@ -815,162 +815,296 @@ a:hover{text-decoration:underline}
 
 <!-- ═══════════ PANE: HISTORICAL COMPARISON ═══════════ -->
 <div id="pane-compare" class="pane">
-  <div class="cw">
+  <div style="padding:14px 18px">
 
-    <p style="font-size:13px;color:#5A5955;line-height:1.7;margin-bottom:16px">The 2026 Bundibugyo outbreak has become the <strong>3rd largest Ebola outbreak ever recorded</strong> in under 2 weeks of being officially declared. With an estimated true case count possibly exceeding 1,000 (MRC London), it could rise further. Unlike all large prior outbreaks, this one has <strong>no vaccine and no approved treatment.</strong></p>
+    <p style="font-size:13px;color:#5A5955;line-height:1.7;margin-bottom:16px;max-width:820px">
+      The 2026 Bundibugyo outbreak has the steepest early growth curve of any Ebola outbreak on record.
+      Charts below compare cumulative cases and deaths over time against the two largest previous outbreaks,
+      all aligned to <strong>Day 0 = first official report / declaration date</strong>.
+      The 2014&ndash;16 West Africa outbreak reached 28,600 cases total &mdash; scale compressed for readability.
+    </p>
 
-    <div class="sec">Major outbreaks compared</div>
+    <!-- CASES LINE CHART -->
+    <div style="font-size:10px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
+      Cumulative suspected cases over time &mdash; days since first official report
+      <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span>
+    </div>
+    <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:14px 16px;margin-bottom:18px;overflow-x:auto">
+      <svg viewBox="0 0 760 300" width="100%" style="display:block;min-width:480px" role="img">
+        <title>Ebola outbreaks cases comparison line chart</title>
+        <!-- Grid lines -->
+        <line x1="60" y1="10"  x2="730" y2="10"  stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="60"  x2="730" y2="60"  stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="110" x2="730" y2="110" stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="160" x2="730" y2="160" stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="210" x2="730" y2="210" stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="250" x2="730" y2="250" stroke="#E0DDD6" stroke-width="1"/>
+        <!-- X axis grid -->
+        <line x1="60"  y1="10" x2="60"  y2="250" stroke="#E0DDD6" stroke-width="1"/>
+        <line x1="178" y1="10" x2="178" y2="250" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="296" y1="10" x2="296" y2="250" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="414" y1="10" x2="414" y2="250" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="532" y1="10" x2="532" y2="250" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="650" y1="10" x2="650" y2="250" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="730" y1="10" x2="730" y2="250" stroke="#F0EFE9" stroke-width="0.5"/>
+        <!-- Y axis labels: scale 0-3500 cases, y=250-(cases/3500)*240 -->
+        <text x="55" y="253" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">0</text>
+        <text x="55" y="216" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">500</text>
+        <text x="55" y="147" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">1,500</text>
+        <text x="55" y="113" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">2,000</text>
+        <text x="55" y="63"  font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">3,000+</text>
+        <!-- X axis labels: 0-120 days, x=60+(day/120)*670 -->
+        <text x="60"  y="265" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 0</text>
+        <text x="178" y="265" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 10</text>
+        <text x="296" y="265" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 20</text>
+        <text x="414" y="265" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 30</text>
+        <text x="532" y="265" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 60</text>
+        <text x="650" y="265" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 90</text>
+        <text x="730" y="265" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 120</text>
+
+        <!-- ── 2014-16 WEST AFRICA (Zaire) — BLUE
+             Approx data: Day0=1, Day5=30, Day10=70, Day20=350, Day30=700, Day60=2100, Day90=3470
+             y=250-(cases/3500)*240  x=60+(day/120)*670 -->
+        <polyline fill="none" stroke="#185FA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          points="60,250  100,248  178,245  296,226  414,202  532,106  650,13"/>
+        <circle cx="60"  cy="250" r="3" fill="#185FA5"/>
+        <circle cx="100" cy="248" r="3" fill="#185FA5"/>
+        <circle cx="178" cy="245" r="3" fill="#185FA5"/>
+        <circle cx="296" cy="226" r="3" fill="#185FA5"/>
+        <circle cx="414" cy="202" r="3" fill="#185FA5"/>
+        <circle cx="532" cy="106" r="3" fill="#185FA5"/>
+        <circle cx="650" cy="13"  r="3" fill="#185FA5"/>
+        <text x="655" y="10" font-size="9" fill="#185FA5" font-family="system-ui">3,470</text>
+
+        <!-- ── 2018-20 DRC KIVU (Zaire) — AMBER
+             Day0=1, Day10=30, Day20=120, Day30=280, Day60=700, Day90=1200, Day120=1900 -->
+        <polyline fill="none" stroke="#BA7517" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          points="60,250  178,248  296,242  414,231  532,202  650,168  730,120"/>
+        <circle cx="60"  cy="250" r="3" fill="#BA7517"/>
+        <circle cx="178" cy="248" r="3" fill="#BA7517"/>
+        <circle cx="296" cy="242" r="3" fill="#BA7517"/>
+        <circle cx="414" cy="231" r="3" fill="#BA7517"/>
+        <circle cx="532" cy="202" r="3" fill="#BA7517"/>
+        <circle cx="650" cy="168" r="3" fill="#BA7517"/>
+        <circle cx="730" cy="120" r="3" fill="#BA7517"/>
+        <text x="735" y="120" font-size="9" fill="#BA7517" font-family="system-ui">1,900</text>
+
+        <!-- ── 2026 BUNDIBUGYO — RED (actual reported data)
+             Day0(Apr24)=3, Day11(May5)=50, Day21(May15)=246, Day22(May16)=516,
+             Day23=536, Day24=543, Day25=575, Day26=626, Day27=650, Day29(May23)=750
+             x=60+(day/120)*670  y=250-(cases/3500)*240 -->
+        <polyline fill="none" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          points="60,250  122,247  177,233  184,215  190,213  191,210  192,207  194,207  196,205  202,199"/>
+        <!-- Dots at key milestones -->
+        <circle cx="60"  cy="250" r="3.5" fill="#C0392B"/>
+        <circle cx="122" cy="247" r="3.5" fill="#C0392B"/>
+        <circle cx="177" cy="233" r="3.5" fill="#C0392B"/>
+        <circle cx="184" cy="215" r="3.5" fill="#C0392B"/>
+        <circle cx="202" cy="199" r="3.5" fill="#C0392B"/>
+        <!-- Labels -->
+        <text x="162" y="230" font-size="8" fill="#C0392B" font-family="system-ui">246 (Day 21)</text>
+        <text x="186" y="212" font-size="8" fill="#C0392B" font-family="system-ui">516 (Day 22)</text>
+        <text x="205" y="196" font-size="8" fill="#C0392B" font-family="system-ui" font-weight="600">~750 (Day 29)</text>
+        <!-- Dashed projection -->
+        <line x1="202" y1="199" x2="300" y2="160" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.45"/>
+        <text x="302" y="158" font-size="8" fill="#C0392B" font-family="system-ui" opacity="0.6">projected</text>
+
+        <!-- LEGEND -->
+        <rect x="60" y="278" width="690" height="18" fill="none"/>
+        <line x1="62" y1="287" x2="90" y2="287" stroke="#C0392B" stroke-width="2.5"/>
+        <circle cx="76" cy="287" r="3.5" fill="#C0392B"/>
+        <text x="94" y="291" font-size="10" fill="#1A1A1A" font-family="system-ui">2026 Bundibugyo (actual)</text>
+        <line x1="240" y1="287" x2="268" y2="287" stroke="#185FA5" stroke-width="2"/>
+        <circle cx="254" cy="287" r="3" fill="#185FA5"/>
+        <text x="272" y="291" font-size="10" fill="#1A1A1A" font-family="system-ui">2014&#x2013;16 West Africa (Zaire)</text>
+        <line x1="450" y1="287" x2="478" y2="287" stroke="#BA7517" stroke-width="2"/>
+        <circle cx="464" cy="287" r="3" fill="#BA7517"/>
+        <text x="482" y="291" font-size="10" fill="#1A1A1A" font-family="system-ui">2018&#x2013;20 DRC Kivu (Zaire)</text>
+        <line x1="640" y1="283" x2="660" y2="283" stroke="#888" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+        <text x="664" y="291" font-size="10" fill="#8A8880" font-family="system-ui">projected</text>
+      </svg>
+    </div>
+
+    <!-- DEATHS LINE CHART -->
+    <div style="font-size:10px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
+      Cumulative suspected deaths over time &mdash; days since first official report
+      <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span>
+    </div>
+    <div style="background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:14px 16px;margin-bottom:18px;overflow-x:auto">
+      <svg viewBox="0 0 760 290" width="100%" style="display:block;min-width:480px" role="img">
+        <title>Ebola outbreaks deaths comparison line chart</title>
+        <line x1="60" y1="10"  x2="730" y2="10"  stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="60"  x2="730" y2="60"  stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="110" x2="730" y2="110" stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="160" x2="730" y2="160" stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="210" x2="730" y2="210" stroke="#F0EFE9" stroke-width="1"/>
+        <line x1="60" y1="240" x2="730" y2="240" stroke="#E0DDD6" stroke-width="1"/>
+        <line x1="60"  y1="10" x2="60"  y2="240" stroke="#E0DDD6" stroke-width="1"/>
+        <line x1="178" y1="10" x2="178" y2="240" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="296" y1="10" x2="296" y2="240" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="414" y1="10" x2="414" y2="240" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="532" y1="10" x2="532" y2="240" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="650" y1="10" x2="650" y2="240" stroke="#F0EFE9" stroke-width="0.5"/>
+        <line x1="730" y1="10" x2="730" y2="240" stroke="#F0EFE9" stroke-width="0.5"/>
+        <!-- Y labels: scale 0-1500 deaths, y=240-(deaths/1500)*230 -->
+        <text x="55" y="243" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">0</text>
+        <text x="55" y="213" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">200</text>
+        <text x="55" y="163" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">500</text>
+        <text x="55" y="113" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">850</text>
+        <text x="55" y="63"  font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">1,200</text>
+        <text x="55" y="13"  font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">1,500+</text>
+        <!-- X labels -->
+        <text x="60"  y="255" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 0</text>
+        <text x="178" y="255" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 10</text>
+        <text x="296" y="255" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 20</text>
+        <text x="414" y="255" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 30</text>
+        <text x="532" y="255" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 60</text>
+        <text x="650" y="255" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 90</text>
+        <text x="730" y="255" font-size="9" fill="#8A8880" text-anchor="middle" font-family="system-ui">Day 120</text>
+
+        <!-- 2014-16: Day0=1, Day10=40, Day20=210, Day30=430, Day60=1300, Day90=1500
+             y=240-(deaths/1500)*230 -->
+        <polyline fill="none" stroke="#185FA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          points="60,240  178,234  296,208  414,174  532,40   650,10"/>
+        <circle cx="60"  cy="240" r="3" fill="#185FA5"/>
+        <circle cx="178" cy="234" r="3" fill="#185FA5"/>
+        <circle cx="296" cy="208" r="3" fill="#185FA5"/>
+        <circle cx="414" cy="174" r="3" fill="#185FA5"/>
+        <circle cx="532" cy="40"  r="3" fill="#185FA5"/>
+        <circle cx="650" cy="10"  r="3" fill="#185FA5"/>
+        <text x="655" y="10" font-size="9" fill="#185FA5" font-family="system-ui">1,500+</text>
+
+        <!-- 2018-20: Day0=1, Day10=15, Day20=60, Day30=130, Day60=320, Day90=580, Day120=900 -->
+        <polyline fill="none" stroke="#BA7517" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          points="60,240  178,238  296,231  414,220  532,191  650,151  730,102"/>
+        <circle cx="60"  cy="240" r="3" fill="#BA7517"/>
+        <circle cx="178" cy="238" r="3" fill="#BA7517"/>
+        <circle cx="296" cy="231" r="3" fill="#BA7517"/>
+        <circle cx="414" cy="220" r="3" fill="#BA7517"/>
+        <circle cx="532" cy="191" r="3" fill="#BA7517"/>
+        <circle cx="650" cy="151" r="3" fill="#BA7517"/>
+        <circle cx="730" cy="102" r="3" fill="#BA7517"/>
+        <text x="735" y="102" font-size="9" fill="#BA7517" font-family="system-ui">900</text>
+
+        <!-- 2026 ACTUAL deaths: Day0=1, Day11=15, Day21=80, Day22=131, Day23=134,
+             Day24=148, Day25=160, Day29=177 -->
+        <polyline fill="none" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          points="60,240  122,238  177,228  184,220  190,219  191,217  192,215  202,213"/>
+        <circle cx="60"  cy="240" r="3.5" fill="#C0392B"/>
+        <circle cx="122" cy="238" r="3.5" fill="#C0392B"/>
+        <circle cx="177" cy="228" r="3.5" fill="#C0392B"/>
+        <circle cx="184" cy="220" r="3.5" fill="#C0392B"/>
+        <circle cx="202" cy="213" r="3.5" fill="#C0392B"/>
+        <text x="159" y="225" font-size="8" fill="#C0392B" font-family="system-ui">80 (Day 21)</text>
+        <text x="186" y="217" font-size="8" fill="#C0392B" font-family="system-ui">131 (Day 22)</text>
+        <text x="205" y="210" font-size="8" fill="#C0392B" font-family="system-ui" font-weight="600">177 (Day 29)</text>
+        <line x1="202" y1="213" x2="290" y2="185" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.45"/>
+
+        <!-- LEGEND -->
+        <line x1="62"  y1="273" x2="90"  y2="273" stroke="#C0392B" stroke-width="2.5"/>
+        <circle cx="76" cy="273" r="3.5" fill="#C0392B"/>
+        <text x="94"  y="277" font-size="10" fill="#1A1A1A" font-family="system-ui">2026 Bundibugyo (actual)</text>
+        <line x1="240" y1="273" x2="268" y2="273" stroke="#185FA5" stroke-width="2"/>
+        <circle cx="254" cy="273" r="3" fill="#185FA5"/>
+        <text x="272" y="277" font-size="10" fill="#1A1A1A" font-family="system-ui">2014&#x2013;16 West Africa (Zaire)</text>
+        <line x1="450" y1="273" x2="478" y2="273" stroke="#BA7517" stroke-width="2"/>
+        <circle cx="464" cy="273" r="3" fill="#BA7517"/>
+        <text x="482" y="277" font-size="10" fill="#1A1A1A" font-family="system-ui">2018&#x2013;20 DRC Kivu (Zaire)</text>
+      </svg>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div style="font-size:10px;font-weight:600;color:#8A8880;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
+      Key outbreaks compared
+      <span style="flex:1;height:1px;background:#E0DDD6;display:block"></span>
+    </div>
     <div style="overflow-x:auto">
-      <table class="ct">
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
         <thead>
-          <tr>
-            <th>Outbreak</th>
-            <th>Strain</th>
-            <th style="text-align:right">Cases</th>
-            <th style="text-align:right">Deaths</th>
-            <th style="text-align:right">CFR</th>
-            <th>Vaccine</th>
-            <th>PHEIC</th>
+          <tr style="background:#F5F4F0">
+            <th style="text-align:left;padding:6px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Outbreak</th>
+            <th style="text-align:left;padding:6px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Strain</th>
+            <th style="text-align:right;padding:6px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Total cases</th>
+            <th style="text-align:right;padding:6px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Deaths</th>
+            <th style="text-align:right;padding:6px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">CFR</th>
+            <th style="text-align:left;padding:6px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">Vaccine</th>
+            <th style="text-align:left;padding:6px 10px;border-bottom:1px solid #E0DDD6;font-weight:600;font-size:10px;color:#8A8880;text-transform:uppercase">PHEIC</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="now">
-            <td>2026 DRC/Uganda <span style="background:#FFF0EE;color:#7B1A1A;border:1px solid #FAD8CC;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;margin-left:4px">ACTIVE</span></td>
-            <td style="color:#185FA5;font-weight:500">Bundibugyo</td>
-            <td style="text-align:right;color:#A32D2D;font-weight:600">600+ (est 1,000+)</td>
-            <td style="text-align:right;color:#A32D2D;font-weight:600">139+ growing</td>
-            <td style="text-align:right">~25%</td>
-            <td style="color:#A32D2D;font-weight:600">&#x2717; None</td>
-            <td style="color:#27500A;font-weight:600">&#x2713; Yes</td>
+          <tr style="background:#FFF8F8">
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;font-weight:600;color:#C0392B">2026 DRC/Uganda <span style="background:#FFF0EE;color:#7B1A1A;border:1px solid #FAD8CC;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;margin-left:3px">ACTIVE</span></td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#185FA5;font-weight:500">Bundibugyo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right;font-weight:600;color:#C0392B">~750 susp. (growing)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right;font-weight:600;color:#C0392B">177 susp.</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">~24%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D;font-weight:600">&#x2717; None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#27500A;font-weight:600">&#x2713; Yes</td>
           </tr>
           <tr>
-            <td>2014&ndash;16 West Africa</td>
-            <td>Zaire</td>
-            <td style="text-align:right">28,600</td>
-            <td style="text-align:right">11,325</td>
-            <td style="text-align:right">40%</td>
-            <td style="color:#854F0B">Led to Ervebo</td>
-            <td style="color:#27500A">&#x2713; Yes</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">2014&#x2013;16 West Africa</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">Zaire</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">28,600</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">11,325</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">40%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#854F0B">Led to Ervebo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#27500A">&#x2713; Yes</td>
+          </tr>
+          <tr style="background:#F9F8F4">
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">2018&#x2013;20 DRC Kivu</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">Zaire</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">3,470</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">2,287</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">66%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#27500A">&#x2713; Ervebo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#27500A">&#x2713; Yes</td>
           </tr>
           <tr>
-            <td>2018&ndash;20 DRC Kivu</td>
-            <td>Zaire</td>
-            <td style="text-align:right">3,470</td>
-            <td style="text-align:right">2,287</td>
-            <td style="text-align:right">66%</td>
-            <td style="color:#27500A">&#x2713; Ervebo</td>
-            <td style="color:#27500A">&#x2713; Yes</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">2022 Uganda (Sudan)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">Sudan</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">164</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">77</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">47%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D">&#x2717; None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">No</td>
+          </tr>
+          <tr style="background:#F9F8F4">
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">2012 DRC (Bundibugyo)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#185FA5">Bundibugyo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">57</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">29</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">51%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D">&#x2717; None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">No</td>
           </tr>
           <tr>
-            <td>2022 Uganda (Sudan)</td>
-            <td>Sudan</td>
-            <td style="text-align:right">164</td>
-            <td style="text-align:right">77</td>
-            <td style="text-align:right">47%</td>
-            <td style="color:#A32D2D">&#x2717; None</td>
-            <td>No</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">2007 Uganda (Bundibugyo)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#185FA5">Bundibugyo</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">149</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">37</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">25%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D">&#x2717; None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">No</td>
           </tr>
-          <tr>
-            <td>2012 DRC (Bundibugyo)</td>
-            <td style="color:#185FA5">Bundibugyo</td>
-            <td style="text-align:right">57</td>
-            <td style="text-align:right">29</td>
-            <td style="text-align:right">51%</td>
-            <td style="color:#A32D2D">&#x2717; None</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <td>2007 Uganda (Bundibugyo)</td>
-            <td style="color:#185FA5">Bundibugyo</td>
-            <td style="text-align:right">149</td>
-            <td style="text-align:right">37</td>
-            <td style="text-align:right">25%</td>
-            <td style="color:#A32D2D">&#x2717; None</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <td>2000 DRC/Uganda</td>
-            <td>Zaire</td>
-            <td style="text-align:right">425</td>
-            <td style="text-align:right">224</td>
-            <td style="text-align:right">53%</td>
-            <td style="color:#A32D2D">&#x2717; None</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <td>1976 DRC (first ever)</td>
-            <td>Zaire</td>
-            <td style="text-align:right">318</td>
-            <td style="text-align:right">280</td>
-            <td style="text-align:right">88%</td>
-            <td style="color:#A32D2D">&#x2717; None</td>
-            <td>No</td>
+          <tr style="background:#F9F8F4">
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">1976 DRC (first ever)</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">Zaire</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">318</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">280</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;text-align:right">88%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6;color:#A32D2D">&#x2717; None</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #EDECE6">No</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="sec" style="margin-top:20px">Cases by outbreak (chart)</div>
-    <svg width="100%" viewBox="0 0 660 200" style="display:block;max-width:800px;margin-bottom:6px" role="img">
-      <title>Ebola cases by outbreak bar chart</title>
-      <!-- Grid -->
-      <line x1="60" y1="10" x2="650" y2="10" stroke="#E0DDD6" stroke-width="0.5"/>
-      <line x1="60" y1="55" x2="650" y2="55" stroke="#E0DDD6" stroke-width="0.5"/>
-      <line x1="60" y1="100" x2="650" y2="100" stroke="#E0DDD6" stroke-width="0.5"/>
-      <line x1="60" y1="145" x2="650" y2="145" stroke="#E0DDD6" stroke-width="0.5"/>
-      <line x1="60" y1="165" x2="650" y2="165" stroke="#E0DDD6" stroke-width="1"/>
-      <!-- Y labels -->
-      <text x="55" y="13" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">28,600</text>
-      <text x="55" y="58" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~14,000</text>
-      <text x="55" y="103" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~7,000</text>
-      <text x="55" y="148" font-size="9" fill="#8A8880" text-anchor="end" font-family="system-ui">~500</text>
-      <!-- 2014-16: 28,600 height=155 -->
-      <rect x="70" y="10" width="60" height="155" fill="#C0392B" rx="3"/>
-      <text x="100" y="6" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui" font-weight="600">28,600</text>
-      <text x="100" y="178" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2014&ndash;16</text>
-      <text x="100" y="188" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">W. Africa</text>
-      <!-- 2018-20: 3,470 height=19 -->
-      <rect x="148" y="146" width="60" height="19" fill="#E8593C" rx="3"/>
-      <text x="178" y="141" font-size="9" fill="#E8593C" text-anchor="middle" font-family="system-ui" font-weight="600">3,470</text>
-      <text x="178" y="178" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2018&ndash;20</text>
-      <text x="178" y="188" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">DRC Kivu</text>
-      <!-- 2026: est ~10 bar -->
-      <rect x="226" y="155" width="60" height="10" fill="#C0392B" rx="2"/>
-      <rect x="226" y="148" width="60" height="7" fill="#C0392B" fill-opacity="0.35" rx="2"/>
-      <text x="256" y="142" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui" font-weight="600">600+</text>
-      <text x="256" y="133" font-size="8" fill="#8A8880" text-anchor="middle" font-family="system-ui">(est 1,000+)</text>
-      <text x="256" y="178" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui" font-weight="600">2026 NOW</text>
-      <text x="256" y="188" font-size="9" fill="#C0392B" text-anchor="middle" font-family="system-ui">DRC/UG</text>
-      <!-- 2000: 425 ~3px -->
-      <rect x="304" y="162" width="50" height="3" fill="#BA7517" rx="2"/>
-      <text x="329" y="157" font-size="9" fill="#BA7517" text-anchor="middle" font-family="system-ui">425</text>
-      <text x="329" y="178" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2000</text>
-      <text x="329" y="188" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">DRC</text>
-      <!-- 2007 Bundibugyo: 149 ~1px -->
-      <rect x="367" y="163" width="50" height="2" fill="#185FA5" rx="2"/>
-      <text x="392" y="158" font-size="9" fill="#185FA5" text-anchor="middle" font-family="system-ui">149</text>
-      <text x="392" y="178" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2007 BDB</text>
-      <text x="392" y="188" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">Uganda</text>
-      <!-- 2022: 164 ~1px -->
-      <rect x="430" y="163" width="50" height="2" fill="#BA7517" rx="2"/>
-      <text x="455" y="158" font-size="9" fill="#BA7517" text-anchor="middle" font-family="system-ui">164</text>
-      <text x="455" y="178" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">2022</text>
-      <text x="455" y="188" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">Uganda</text>
-      <!-- 1976: 318 ~2px -->
-      <rect x="493" y="163" width="50" height="2" fill="#6B6A64" rx="2"/>
-      <text x="518" y="158" font-size="9" fill="#6B6A64" text-anchor="middle" font-family="system-ui">318</text>
-      <text x="518" y="178" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">1976</text>
-      <text x="518" y="188" font-size="9" fill="#5A5955" text-anchor="middle" font-family="system-ui">DRC (1st)</text>
-      <!-- legend -->
-      <rect x="570" y="140" width="10" height="10" fill="#C0392B" rx="2"/>
-      <text x="584" y="149" font-size="9" fill="#5A5955" font-family="system-ui">Confirmed</text>
-      <rect x="570" y="154" width="10" height="10" fill="#C0392B" fill-opacity="0.35" rx="2"/>
-      <text x="584" y="163" font-size="9" fill="#5A5955" font-family="system-ui">Estimated</text>
-      <rect x="570" y="168" width="10" height="10" fill="#185FA5" rx="2"/>
-      <text x="584" y="177" font-size="9" fill="#5A5955" font-family="system-ui">Bundibugyo</text>
-    </svg>
-
-    <p style="font-size:11px;color:#8A8880;line-height:1.6">Sources: <a href="https://www.cdc.gov/ebola/outbreaks/index.html" target="_blank">US CDC Outbreak History</a> &bull; <a href="https://www.mappr.co/ebola-outbreaks-by-country/" target="_blank">Mappr 2026</a> &bull; <a href="https://theworlddata.com/ebola-outbreak-statistics-in-africa/" target="_blank">The World Data</a> &bull; CFR = Case Fatality Rate &bull; BDB = Bundibugyo strain &bull; 2026 estimated total per MRC Imperial College London</p>
+    <p style="font-size:11px;color:#8A8880;margin-top:8px;line-height:1.6">
+      Sources: <a href="https://www.cdc.gov/ebola/outbreaks/index.html" target="_blank" style="color:#185FA5">US CDC Outbreak History</a> &bull;
+      <a href="https://www.mappr.co/ebola-outbreaks-by-country/" target="_blank" style="color:#185FA5">Mappr 2026</a> &bull;
+      Historical comparison lines use representative weekly data points derived from published WHO/CDC situation reports.
+      2026 line uses actual reported figures at each date. CFR = Case Fatality Rate. BDB = Bundibugyo strain.
+    </p>
 
   </div>
 </div>
